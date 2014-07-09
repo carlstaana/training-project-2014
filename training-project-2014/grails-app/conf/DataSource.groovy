@@ -4,7 +4,11 @@ dataSource {
     driverClassName = "com.mysql.jdbc.Driver"
     username = "root"
     password = "ap0ll0"
+<<<<<<< HEAD
 	dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+=======
+	dialect = "og.hibernate.dialect.MySQL5InnoDBDialect"
+>>>>>>> [UPDATE]: Changed database directory for DataSource.groovy
 }
 hibernate {
     cache.use_second_level_cache = true
