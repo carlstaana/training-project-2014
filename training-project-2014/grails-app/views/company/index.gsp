@@ -9,24 +9,14 @@
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-	<a href="#list-company" class="skip" tabindex="-1"><g:message
-			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-	<div class="nav" role="navigation">
-		<ul>
-			<li><a class="home" href="${createLink(uri: '/')}"><g:message
-						code="default.home.label" /></a></li>
-			<li><g:link class="create" action="create">
-					<g:message code="default.new.label" args="[entityName]" />
-				</g:link></li>
-		</ul>
-	</div>
+	<div id="module">
 	<div id="list-company" class="content scaffold-list" role="main">
 
 		<g:form>
 			<h1>
 				<g:message code="default.list.label" args="[entityName]" />
 			</h1>
-			<div style="margin-left: 45%">
+			<fieldset style="padding-left: 0">
 				Filter by Status:
 				<g:select name="searchCategory"
 					from="${com.apollo.training.Company$SearchCategories?.values()}"
@@ -34,7 +24,7 @@
 					required="" value="${searchCategory}" />
 				<input type="search" name="searchable" value="${searchKeyword}" />
 				<g:actionSubmit action="index" value="Search" />
-			</div>
+			</fieldset>
 		</g:form>
 
 		<g:if test="${flash.message}">
@@ -111,6 +101,7 @@
 					params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 			</g:else>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

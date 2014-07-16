@@ -8,7 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class CompanyController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: ["POST", "DELETE"]]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -41,7 +41,7 @@ class CompanyController {
 			return
 		}
 
-		companyInstance.status = "ADDED"
+		companyInstance.status = "EDITED"
 
 		companyInstance.save flush:true
 
@@ -133,7 +133,7 @@ class CompanyController {
 			form multipartForm {
 				flash.message = message(code: 'default.updated.message', args: [
 					message(code: 'Company.label', default: 'Company'),
-					CompanyInstance.id
+					companyInstance.id
 				])
 				redirect companyInstance
 			}
