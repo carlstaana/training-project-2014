@@ -139,7 +139,6 @@
 		valueMessagePrefix="product.unitOfMeasureStackingHeight" />
 
 </div>
-</div>
 
 <div
 	class="fieldcontain ${hasErrors(bean: productInstance, field: 'noOfLayersPerPallet', 'error')} required">

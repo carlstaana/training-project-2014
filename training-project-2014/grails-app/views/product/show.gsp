@@ -9,20 +9,7 @@
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<a href="#show-product" class="skip" tabindex="-1"><g:message
-			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-	<div class="nav" role="navigation">
-		<ul>
-			<li><a class="home" href="${createLink(uri: '/')}"><g:message
-						code="default.home.label" /></a></li>
-			<li><g:link class="list" action="index">
-					<g:message code="default.list.label" args="[entityName]" />
-				</g:link></li>
-			<li><g:link class="create" action="create">
-					<g:message code="default.new.label" args="[entityName]" />
-				</g:link></li>
-		</ul>
-	</div>
+	<div id="module">
 	<div id="show-product" class="content scaffold-show" role="main">
 		<h1>
 			<g:message code="default.show.label" args="[entityName]" />
@@ -309,54 +296,35 @@
 			</g:if>
 
 		</ol>
-		<g:form url="[resource:productInstance, action:'delete']"
-			method="DELETE">
+		<g:form resource="${productInstance}" >
 			<fieldset class="buttons">
-				<g:link action="index">Cancel</g:link>
 				<g:link class="edit" action="edit" resource="${productInstance}">
 					<g:message code="default.button.edit.label" default="Edit" />
 				</g:link>
 				<g:actionSubmit class="delete" action="delete"
 					value="${message(code: 'default.button.delete.label', default: 'Delete')}"
 					onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+			
+				<g:if test="${productInstance?.status != 'CANCELLED'}">
+					<g:actionSubmit action="cancel" class="cancel"
+						value="${message(code: 'default.button.cancel.label', default: 'Cancel Product')}" />
+					<g:if test="${productInstance?.status == 'ADDED' || productInstance?.status == 'EDITED'}">
+						<g:actionSubmit action="reject" class="reject"
+							value="${message(code: 'default.button.reject.label', default: 'Reject')}" />
+						<g:actionSubmit action="approve" class="approve"
+							value="${message(code: 'default.button.approve.label', default: 'Approve')}" />
+					</g:if>
+				</g:if>
+				<g:else>
+					<g:actionSubmit action="reactivate" class="reactivate"
+						value="${message(code: 'default.button.reactivate.label', default: 'Reactivate')}" />
+				</g:else>
+				
+				<g:link class="cancel" action="index"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
+				
 			</fieldset>
 		</g:form>
-
-		<g:if test="${productInstance?.status != 'CANCELLED'}">
-			<g:form url="[resource:productInstance, action:'cancel']">
-				<fieldset class="buttons">
-					<g:submitButton name="cancel" class="cancel"
-						value="${message(code: 'default.button.cancel.label', default: 'Cancel Product')}" />
-				</fieldset>
-			</g:form>
-			<g:if
-				test="${productInstance?.status == 'ADDED' || productInstance?.status == 'EDITED'}">
-
-				<g:form url="[resource:productInstance, action:'reject']">
-					<fieldset class="buttons">
-						<g:submitButton name="reject" class="reject"
-							value="${message(code: 'default.button.reject.label', default: 'Reject')}" />
-					</fieldset>
-				</g:form>
-
-				<g:form url="[resource:productInstance, action:'approve']">
-					<fieldset class="buttons">
-						<g:submitButton name="approve" class="approve"
-							value="${message(code: 'default.button.approve.label', default: 'Approve')}" />
-					</fieldset>
-				</g:form>
-			</g:if>
-		</g:if>
-
-		<g:else>
-			<g:form url="[resource:productInstance, action:'reactivate']">
-				<fieldset class="buttons">
-					<g:submitButton name="reactivate" class="reactivate"
-						value="${message(code: 'default.button.reactivate.label', default: 'Reactivate')}" />
-				</fieldset>
-			</g:form>
-		</g:else>
-
+	</div>
 	</div>
 </body>
 </html>
