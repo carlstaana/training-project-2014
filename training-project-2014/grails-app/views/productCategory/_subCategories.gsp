@@ -12,11 +12,11 @@
         var templateHtml = "<div id='" + htmlId + "' name='" + htmlId + "'>\n";
         templateHtml += "<div><span onClick='$(\"#" + htmlId + "\").remove(); childCount--'><img src='" + deleteIcon + "' />Remove Sub-category</span></div>\n";
         templateHtml += "<div class='fieldcontain ${hasErrors(bean: productCategoryInstance, field: 'sName', 'error')} required'><label for='sName'> <g:message code='productCategory.sName.label' default='Name'/><span class='required-indicator'>*</span></label>"
-        templateHtml += "<input type='text' id='subCategories[" + childCount + "].sName' name='subCategories[" + childCount + "].sName' /></div>\n";
+        templateHtml += "<input type='text' id='subCategories[" + childCount + "].sName' name='subCategories[" + childCount + "].sName' required /></div>\n";
         templateHtml += "<div class='fieldcontain ${hasErrors(bean: productCategoryInstance, field: 'code', 'error')} required'><label for='code'> <g:message code='productCategory.code.label' default='Code'/><span class='required-indicator'>*</span></label>"
-        templateHtml += "<input type='text' id='subCategories[" + childCount + "].code' name='subCategories[" + childCount + "].code' /></div>\n";
+        templateHtml += "<input type='text' id='subCategories[" + childCount + "].code' name='subCategories[" + childCount + "].code' required /></div>\n";
         templateHtml += "<div class='fieldcontain ${hasErrors(bean: productCategoryInstance, field: 'description', 'error')} required'><label for='description'> <g:message code='productCategory.description.label' default='Description'/><span class='required-indicator'>*</span></label>"
-        templateHtml += "<input type='text' id='subCategories[" + childCount + "].description' name='subCategories[" + childCount + "].description'/></div>\n";
+        templateHtml += "<input type='text' id='subCategories[" + childCount + "].description' name='subCategories[" + childCount + "].description' required /></div>\n";
         templateHtml += "</div>\n";
         $("#childList").append(templateHtml);
         childCount++;

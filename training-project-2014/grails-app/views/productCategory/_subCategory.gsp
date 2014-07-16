@@ -17,7 +17,7 @@
 			class="required-indicator">*</span>
 		</label>
 		<g:textField name='subCategories[${i}].sName'
-			value='${subCategory?.sName}' />
+			value='${subCategory?.sName}' required=""/>
 	</div>
 	<div
 		class="fieldcontain ${hasErrors(bean: productCategoryInstance, field: 'code', 'error')} required">
@@ -26,7 +26,7 @@
 			class="required-indicator">*</span>
 		</label>
 		<g:textField name='subCategories[${i}].code'
-			value='${subCategory?.code}' />
+			value='${subCategory?.code}' required=""/>
 	</div>
 	<div
 		class="fieldcontain ${hasErrors(bean: productCategoryInstance, field: 'description', 'error')} required">
@@ -35,6 +35,6 @@
 			class="required-indicator">*</span>
 		</label>
 		<g:textField name='subCategories[${i}].description'
-			value='${subCategory?.description}' />
+			value='${subCategory?.description}' required=""/>
 	</div>
 </div>
