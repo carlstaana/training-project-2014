@@ -4,20 +4,11 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'companyPayment.label', default: 'CompanyPayment')}" />
+		<g:set var="entityName" value="${message(code: 'companyPayment.label', default: 'Company Payment')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-companyPayment" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create" params="['company.id': params.company.id]">
-					<g:message code="default.new.label" args="[entityName]" />
-				</g:link></li>
-				<li><g:link action="index" controller="Company">Cancel</g:link><li>
-			</ul>
-		</div>
+		<div id="module">
 		<div id="list-companyPayment" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -64,6 +55,10 @@
 			<div class="pagination">
 				<g:paginate total="${companyPaymentInstanceCount ?: 0}" />
 			</div>
+			<fieldset class="buttons">
+				<g:link action="create" class="create" params="['company.id': params.company.id]">${message(code:'Add Company Payment', args: [message(code:'companyPayment.label', default: 'Company Payment')]) }</g:link>
+			</fieldset>
+		</div>
 		</div>
 	</body>
 </html>
