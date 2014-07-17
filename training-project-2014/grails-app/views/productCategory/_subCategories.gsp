@@ -1,7 +1,7 @@
 <script type="text/javascript">
     var childCount = ${productCategoryInstance?.subCategories.size()} + 0;
     
-    function addChild() {
+    function addChild() {        
         if(childCount>=5){
         	alert("Only 5 sub-categories are allowed");
             return false;
@@ -11,12 +11,12 @@
         var deleteIcon = "${resource(dir:'images/skin', file:'database_delete.png')}";
         var templateHtml = "<div id='" + htmlId + "' name='" + htmlId + "'>\n";
         templateHtml += "<div><span onClick='$(\"#" + htmlId + "\").remove(); childCount--'><img src='" + deleteIcon + "' />Remove Sub-category</span></div>\n";
-        templateHtml += "<div class='fieldcontain ${hasErrors(bean: productCategoryInstance, field: 'sName', 'error')} required'><label for='sName'> <g:message code='productCategory.sName.label' default='Name'/><span class='required-indicator'>*</span></label>"
-        templateHtml += "<input type='text' id='subCategories[" + childCount + "].sName' name='subCategories[" + childCount + "].sName' required /></div>\n";
-        templateHtml += "<div class='fieldcontain ${hasErrors(bean: productCategoryInstance, field: 'code', 'error')} required'><label for='code'> <g:message code='productCategory.code.label' default='Code'/><span class='required-indicator'>*</span></label>"
-        templateHtml += "<input type='text' id='subCategories[" + childCount + "].code' name='subCategories[" + childCount + "].code' required /></div>\n";
-        templateHtml += "<div class='fieldcontain ${hasErrors(bean: productCategoryInstance, field: 'description', 'error')} required'><label for='description'> <g:message code='productCategory.description.label' default='Description'/><span class='required-indicator'>*</span></label>"
-        templateHtml += "<input type='text' id='subCategories[" + childCount + "].description' name='subCategories[" + childCount + "].description' required /></div>\n";
+        templateHtml += "<div class='fieldcontain ${hasErrors(bean: productCategoryInstance.subCategories, field: 'sName', 'error')} required'><label for='sName'> <g:message code='productCategory.subCategories.sName.label' default='Name'/><span class='required-indicator'>*</span></label>"
+        templateHtml += "<input type='text' id='subCategories[" + childCount + "].sName' name='subCategories[" + childCount + "].sName' required/></div>\n";
+        templateHtml += "<div class='fieldcontain ${hasErrors(bean: productCategoryInstance.subCategories, field: 'code', 'error')} required'><label for='code'> <g:message code='productCategory.subCategories.code.label' default='Code'/><span class='required-indicator'>*</span></label>"
+        templateHtml += "<input type='text' id='subCategories[" + childCount + "].code' name='subCategories[" + childCount + "].code' required/></div>\n";
+        templateHtml += "<div class='fieldcontain ${hasErrors(bean: productCategoryInstance.subCategories, field: 'description', 'error')} required'><label for='description'> <g:message code='productCategory.subCategories.description.label' default='Description'/><span class='required-indicator'>*</span></label>"
+        templateHtml += "<input type='text' id='subCategories[" + childCount + "].description' name='subCategories[" + childCount + "].description' required/></div>\n";
         templateHtml += "</div>\n";
         $("#childList").append(templateHtml);
         childCount++;

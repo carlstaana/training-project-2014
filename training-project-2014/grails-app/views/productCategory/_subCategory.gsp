@@ -5,7 +5,7 @@
 	<div>
 
 	<span
-		onClick="$('#subCategories\\[${i}\\]\\.deleted').val('true'); $('#subCategory${i}').hide();">
+		onClick="$('#subCategories\\[${i}\\]\\.deleted').val('true'); $('#subCategory${i}').hide()">
 		<img src="${resource(dir:'images/skin', file:'database_delete.png')}"
 		style="vertical-align: middle;" /> Remove Sub-category
 	</span>
