@@ -130,47 +130,14 @@ log4j.main = {
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.example.SecUser'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.example.SecUserSecRole'
-grails.plugin.springsecurity.authority.className = 'org.example.SecRole'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-	'/assets/**':                     ['permitAll'],
-	'/**/js/**':                      ['permitAll'],
-	'/**/css/**':                     ['permitAll'],
-	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
-]
-
-
-
-// Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.mycompany.myapp.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.mycompany.myapp.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.mycompany.myapp.Role'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-	'/assets/**':                     ['permitAll'],
-	'/**/js/**':                      ['permitAll'],
-	'/**/css/**':                     ['permitAll'],
-	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
-]
-
-
-
-// Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.apollo.training.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.apollo.training.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.apollo.training.Role'
+//grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
+	'/':                              ['IS_AUTHENTICATED_FULLY'],
+	'/index':                         ['IS_AUTHENTICATED_FULLY'],
+	'/index.gsp':                     ['IS_AUTHENTICATED_FULLY'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
