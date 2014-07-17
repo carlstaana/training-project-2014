@@ -65,7 +65,7 @@ grails.project.dependency.resolution = {
 		compile ":jasper:1.8.0"
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.4" // or ":hibernate:3.6.10.16"
-        runtime ":database-migration:1.4.0"
+        runtime ":database-migration:1.4.0"																																																																		
         runtime ":jquery:1.11.1"
 		
 		
