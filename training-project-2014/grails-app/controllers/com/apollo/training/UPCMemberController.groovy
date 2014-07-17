@@ -7,7 +7,9 @@ import static org.springframework.http.HttpStatus.*
 import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN'])
 @Transactional(readOnly = true)
 class UPCMemberController {
 
