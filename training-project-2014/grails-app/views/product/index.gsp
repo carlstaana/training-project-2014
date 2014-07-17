@@ -10,14 +10,18 @@
 </head>
 <body>
 	<div id="module">
-		<div id="list-product" class="content scaffold-list" role="main ">
-
-			<g:form>
-				<h1>
+	<h1>
 					<g:message code="default.list.label" args="[entityName]" />
 				</h1>
-				<fieldset style="padding-left: 0">
-					Filter by Status:
+		<div id="list-product" class="content scaffold-list" role="main ">
+
+			<fieldset class="buttons topbutton">
+				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.back.to.main.label"/></a>
+				<g:link class="create" action="create"><g:message code="default.create.new.label" args="[entityName]" /></g:link>
+			</fieldset>
+			
+			<g:form>
+				<fieldset class="search">
 					<g:select name="searchCategory"
 						from="${com.apollo.training.Product$SearchCategories?.values()}"
 						keys="${com.apollo.training.Product$SearchCategories.values()*.name()}"
