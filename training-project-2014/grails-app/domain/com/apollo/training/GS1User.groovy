@@ -36,5 +36,6 @@ class GS1User {
 		email(blank:true, nullable: true, email:true)
 		role(inList:["ROLE_ADMINISTRATOR","ROLE_EDITOR","ROLE_MEMBERSHIP_ADMIN","ROLE_PANC_ADMINISTRATOR","ROLE_REPORTS_ADMIN","ROLE_REVIEWER","ROLE_USER"])
 	}
+	
 	//static transients = ['retypePassword']
 }

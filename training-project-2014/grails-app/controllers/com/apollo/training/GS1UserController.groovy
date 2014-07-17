@@ -3,13 +3,21 @@ package com.apollo.training
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
+@Secured(['ROLE_ADMIN'])
 @Transactional(readOnly = true)
 class GS1UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def springSecurityService
+	
+	def selectUser
+	
+	def passwordEncoder
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         //respond GS1User.list(params), model:[GS1UserInstanceCount: GS1User.count()]
@@ -66,6 +74,7 @@ class GS1UserController {
     }
 
     def edit(GS1User GS1UserInstance) {
+		selectUser = GS1UserInstance.username
         respond GS1UserInstance
     }
 
@@ -120,4 +129,30 @@ class GS1UserController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	@Transactional
+	def changePassword() {
+		def oldPassword = params.oldPassword
+		def newPassword = params.newPassword
+		def retype = params.retypeNewPassword
+		def changeUser = GS1User.findByUsername(selectUser)
+
+		// old password must be equal to the old password in database
+		if(oldPassword != null && newPassword!= null && retype != null && oldPassword != changeUser.password) {
+			render "Error! Old Password is not equal to the password in database."
+		}
+
+		if(oldPassword != null && newPassword!= null && retype != null && oldPassword == changeUser.password) {
+			if(newPassword == retype) {
+				changeUser.password = newPassword
+				changeUser.retypePassword = newPassword
+				changeUser.save flush: true
+				render "Password has been changed!"
+			} else {
+				render "Error! Unequal new password"
+			}
+		} else if(oldPassword != null || newPassword!= null || retype != null) {
+			render "Error! All fields required."
+		}
+	}
 }
