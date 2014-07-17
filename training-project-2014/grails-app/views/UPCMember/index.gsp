@@ -24,7 +24,7 @@
 				<g:select name="status" from="${['ALL', 'ADDED', 'EDITED', 'APPROVED', 'CANCELLED', 'REJECTED']}" value="${params.status}" onchange="submit()"/>
 			</g:form>
 		</fieldset>
-		
+		<div id="clear"></div>
 		<g:if test="${flash.message}">
 			<div class="message" role="status">
 				${flash.message}

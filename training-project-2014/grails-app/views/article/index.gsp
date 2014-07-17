@@ -21,6 +21,7 @@
 				    <g:textField name="query" value="${params.query}"/>
 			    </g:form>
 			</fieldset>
+			<div id="clear"></div>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>

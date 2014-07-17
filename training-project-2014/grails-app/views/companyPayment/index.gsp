@@ -15,6 +15,7 @@
 				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.back.to.main.label"/></a>
 				<g:link action="create" class="create" params="['company.id': params.company.id]">${message(code:'Create New Company Payment', args: [message(code:'companyPayment.label', default: 'Company Payment')]) }</g:link>
 			</fieldset>
+			<div id="clear"></div>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>

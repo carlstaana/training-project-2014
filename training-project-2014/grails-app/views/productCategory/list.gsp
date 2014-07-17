@@ -16,7 +16,7 @@
 				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.back.to.main.label"/></a>
 				<g:link class="create" action="create"><g:message code="default.create.new.label" args="[entityName]" /></g:link>
 			</fieldset>
-			
+			<div id="clear"></div>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>

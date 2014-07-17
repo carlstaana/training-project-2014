@@ -30,7 +30,7 @@
 					<g:actionSubmit action="index" value="Search" />
 				</fieldset>
 			</g:form>
-
+			<div id="clear"></div>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">
 					${flash.message}
