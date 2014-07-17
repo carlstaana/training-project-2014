@@ -26,12 +26,17 @@
 		
 		<div role="header"><h4 class="topNotes">
 			<sec:ifLoggedIn>
-			Hi! <sec:loggedInUserInfo field="username" /> | Help | 
-				<form name="submitForm" method="POST"
-					action="${createLink(controller: 'logout')}">
-					<input type="hidden" name="" value=""> <a
-						HREF="javascript:document.submitForm.submit()">Logout</a>
-				</form>
+				<ul>
+					<li>Hi! <sec:loggedInUserInfo field="username" /></li>
+					<li>|</li>
+					<li>Help</li>
+					<li>|</li>
+					<li>
+					<form style="margin: 0; padding: 0;" name="submitForm" method="POST" action="${createLink(controller: 'logout')}">
+						<input type="hidden" name="" value="">
+						<a HREF="javascript:document.submitForm.submit()">Logout</a>
+					</form>
+					</li>
 			</sec:ifLoggedIn>
 		</h4></div>
 		<div id="clear"></div>
@@ -40,7 +45,7 @@
 			<div id="bgtext">
 				<div id="navbar">
 					<ul>
-						<li><a href="">HOME</a></li>
+						<li><a class="home" href="${createLink(uri: '/')}">HOME</a></li>
 						<li><a href="">ABOUT</a></li>
 						<li><a href="">CONTACT US</a></li>
 					</ul>
