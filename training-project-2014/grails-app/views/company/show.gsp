@@ -361,7 +361,7 @@
 					
 				<g:if test="${companyInstance?.status != 'CANCELLED'}">
 					<g:if test="${companyInstance?.status == 'APPROVED' }">
-						<g:actionSubmit action="cancel" class="cancel" value="${message(code: 'default.button.cancel.label', default: 'Cancel Membership')}" />
+						<g:actionSubmit action="cancel" class="cancelstatus" value="${message(code: 'Cancel Company Membership')}" />
 					</g:if>
 				
 					<g:if test="${companyInstance?.status == 'ADDED' || companyInstance?.status == 'EDITED' || companyInstance?.status == 'REJECTED' }">
