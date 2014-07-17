@@ -145,6 +145,7 @@ class ArticleController {
         }
     }
 	
+	
 	def CustomJasperService
 	/**
 	 * controller the report generated
