@@ -9,11 +9,11 @@
 </head>
 <body>
 	<div id="module">
-	<div id="edit-productCategory" class="content scaffold-edit"
-		role="main">
-		<h1>
+			<h1>
 			<g:message code="default.edit.label" args="[entityName]" />
 		</h1>
+	<div id="edit-productCategory" class="content scaffold-edit"
+		role="main">
 		<g:if test="${flash.message}">
 			<div class="message" role="status">
 				${flash.message}
