@@ -3,8 +3,10 @@ package com.apollo.training
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
+@Secured(['IS_AUTHENTICATED_FULLY'])
 @Transactional(readOnly = true)
 class ArticleController {
 
@@ -35,11 +37,13 @@ class ArticleController {
     def show(Article articleInstance) {
         respond articleInstance
     }
-
+	
+	@Secured(['ROLE_ADMIN'])
     def create() {
         respond new Article(params)
     }
 
+	@Secured(['ROLE_ADMIN'])
     @Transactional
     def save(Article articleInstance) {
         if (articleInstance == null) {
@@ -75,10 +79,12 @@ class ArticleController {
         }
     }
 
+	@Secured(['ROLE_ADMIN'])
     def edit(Article articleInstance) {
         respond articleInstance
     }
 
+	@Secured(['ROLE_ADMIN'])
     @Transactional
     def update(Article articleInstance) {
         if (articleInstance == null) {
@@ -114,6 +120,7 @@ class ArticleController {
         }
     }
 
+	@Secured(['ROLE_ADMIN'])
     @Transactional
     def delete(Article articleInstance) {
 
@@ -152,6 +159,7 @@ class ArticleController {
 	/**
 	 * controller the report generated
 	 */
+	@Secured(['ROLE_ADMIN'])
 	def downloadStatementOfAccount(){
 		def articleInstance = Article.get(params.id)
 		def params = [:]
