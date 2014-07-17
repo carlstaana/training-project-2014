@@ -4,7 +4,9 @@ package com.apollo.training
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['IS_AUTHENTICATED_FULLY'])
 @Transactional(readOnly = true)
 class ProductController {
 
@@ -36,7 +38,8 @@ class ProductController {
 				productInstanceTotal: Product.count()]
 		}
 	}
-
+	
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def reactivate(Product productInstance){
 		if (productInstance == null) {
@@ -65,6 +68,7 @@ class ProductController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def cancel(Product productInstance){
 		if (productInstance == null) {
@@ -93,6 +97,7 @@ class ProductController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def reject(Product productInstance){
 		if (productInstance == null) {
@@ -121,6 +126,7 @@ class ProductController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def approve(Product productInstance){
 		if (productInstance == null) {
