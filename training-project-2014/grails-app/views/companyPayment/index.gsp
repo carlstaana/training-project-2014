@@ -9,8 +9,12 @@
 	</head>
 	<body>
 		<div id="module">
+		<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 		<div id="list-companyPayment" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<fieldset class="buttons topbutton">
+				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.back.to.main.label"/></a>
+				<g:link action="create" class="create" params="['company.id': params.company.id]">${message(code:'Create New Company Payment', args: [message(code:'companyPayment.label', default: 'Company Payment')]) }</g:link>
+			</fieldset>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -55,9 +59,6 @@
 			<div class="pagination">
 				<g:paginate total="${companyPaymentInstanceCount ?: 0}" />
 			</div>
-			<fieldset class="buttons">
-				<g:link action="create" class="create" params="['company.id': params.company.id]">${message(code:'Add Company Payment', args: [message(code:'companyPayment.label', default: 'Company Payment')]) }</g:link>
-			</fieldset>
 		</div>
 		</div>
 	</body>
