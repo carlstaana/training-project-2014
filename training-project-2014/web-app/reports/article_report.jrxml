@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="article_report" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea41df63-3411-479c-84a7-84a53caf667f">
+	<property name="ireport.zoom" value="1.6105100000000012"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="132"/>
+	<parameter name="Title" class="java.lang.String"/>
+	<parameter name="Author" class="java.lang.String"/>
+	<parameter name="Story" class="java.lang.String"/>
+	<parameter name="Publication" class="java.lang.String"/>
+	<parameter name="Image" class="java.lang.Object"/>
+	<parameter name="NewsType" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT title, author from article;]]>
+	</queryString>
+	<field name="title" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="author" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<textField>
+				<reportElement x="64" y="11" width="220" height="23" uuid="3bef5aa1-136f-4437-8756-dc9b7d4bb690"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="51" width="220" height="23" uuid="a025e714-0915-4d6c-80fe-afa2bd37f3e5"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Author}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="11" width="64" height="23" uuid="d270bafc-44ab-4bf8-8af7-f60b645598c1"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Title: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="51" width="53" height="23" uuid="a91e2ceb-d0cb-4a2d-b8b3-67ad025485b1"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Author: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="79" y="85" width="243" height="18" uuid="4cd4c79f-da43-4eb5-a0a2-fe928855a0da"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Publication}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="85" width="79" height="18" uuid="a3ca275b-3594-460d-8c69-29f09dcf0545"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Publication:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="103" width="79" height="18" uuid="9c54ff84-9717-4fcd-8341-4567ea1a6fb7"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[News Type:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="79" y="103" width="243" height="18" uuid="3cb97865-02cd-4899-b068-42ac754592f2"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NewsType}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="126" width="555" height="1" uuid="0475f789-3393-4804-95d0-12e7e6521c0f"/>
+				<graphicElement>
+					<pen lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="372" y="0" width="183" height="51" uuid="c72fbcec-05f6-46ec-b95a-55a055befa3c"/>
+				<textElement>
+					<font size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GS1 Article]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="530" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="23" width="284" height="507" uuid="edff8966-699f-4ebd-bb1a-202174c9b5cd"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Story}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="64" height="23" uuid="c64c99b1-8425-47ee-b243-7c90cb9d621a"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Story: ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="284" y="23" width="271" height="264" uuid="d1556e13-7726-4ada-8339-eb3983d72a2d"/>
+				<imageExpression><![CDATA[$P{Image}]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>
