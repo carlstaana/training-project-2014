@@ -20,7 +20,10 @@ class ArticleController {
 		 */
 		params.max = Math.min(params.max ? params.int('max') : 5, 100)
 		def ArticleList = Article.createCriteria().list(params) {
-		   or {
+			if(params.query == null){
+				respond Article.list(params), model:[articleInstanceCount: Article.count()]
+			}
+			or {
 			   ilike("title", "%${params.query}%")
 			   ilike("author", "%${params.query}%")
 			   ilike("newsType", "%${params.query}%")
