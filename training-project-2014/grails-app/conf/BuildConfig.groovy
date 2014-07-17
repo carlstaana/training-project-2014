@@ -44,7 +44,6 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
-		mavenRepo "http://repo.grails.org/grails/core"
     }
 
     dependencies {
@@ -63,10 +62,12 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.6'
         compile ":asset-pipeline:1.8.11"
 		compile ":jasper:1.8.0"
+		
 		// spring security
 		compile ':spring-security-core:2.0-RC4'
 		// spring security-ui dependencies, this must be installed before the spring security-ui is ready to use
 		compile ":mail:1.0.6"
+
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.4" // or ":hibernate:3.6.10.16"
         runtime ":database-migration:1.4.0"																																																																		
