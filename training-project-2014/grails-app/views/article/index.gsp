@@ -11,11 +11,11 @@
 		<div id="module">
 		<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 		<div id="list-article" class="content scaffold-list" role="main">
-			<fieldset style="float: left;" class="buttons">
+			<fieldset class="buttons topbutton">
 				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.back.to.main.label"/></a>
 				<g:link class="create" action="create"><g:message code="default.create.new.label" args="[entityName]" /></g:link>
 			</fieldset>
-			<fieldset style="padding-left: 0; float: right;">
+			<fieldset class="search">
 			    <g:form action="index" method="GET">
 				    <label for="query">Search:</label>
 				    <g:textField name="query" value="${params.query}"/>
