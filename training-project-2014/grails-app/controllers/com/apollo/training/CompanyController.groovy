@@ -4,12 +4,14 @@ package com.apollo.training
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.annotation.Secured
 
 @Transactional(readOnly = true)
 class CompanyController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: ["POST", "DELETE"]]
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 
@@ -37,6 +39,7 @@ class CompanyController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def reactivate(Company companyInstance){
 		if (companyInstance == null) {
@@ -65,6 +68,7 @@ class CompanyController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def cancel(Company companyInstance){
 		if (companyInstance == null) {
@@ -93,6 +97,7 @@ class CompanyController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def reject(Company companyInstance){
 		if (companyInstance == null) {
@@ -121,6 +126,7 @@ class CompanyController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def approve(Company companyInstance){
 		if (companyInstance == null) {
@@ -149,14 +155,17 @@ class CompanyController {
 		}
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def show(Company companyInstance) {
 		respond companyInstance
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	def create() {
 		respond new Company(params)
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	@Transactional
 	def save(Company companyInstance) {
 		if (companyInstance == null) {
@@ -183,10 +192,12 @@ class CompanyController {
 		}
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def edit(Company companyInstance) {
 		respond companyInstance
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	@Transactional
 	def update(Company companyInstance) {
 		if (companyInstance == null) {
@@ -213,6 +224,7 @@ class CompanyController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def delete(Company companyInstance) {
 
@@ -235,6 +247,7 @@ class CompanyController {
 		}
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	protected void notFound() {
 		request.withFormat {
 			form multipartForm {
