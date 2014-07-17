@@ -83,7 +83,7 @@ class UPCMemberController {
 			return
 		}
 
-		if (UPCMemberInstance.status != "APPROVED") {
+		if (UPCMemberInstance.status == "ADDED") {
 			UPCMemberInstance.status = "EDITED"
 		}
 
@@ -130,8 +130,8 @@ class UPCMemberController {
 			return
 		}
 
-		def codeValue
-
+		def codeValue		
+		
 		if (params._action_option == "Reject") {
 			UPCMemberInstance.status = "REJECTED"
 			codeValue = 'default.rejected.message'
@@ -142,7 +142,7 @@ class UPCMemberController {
 			UPCMemberInstance.status = "CANCELLED"
 			codeValue = 'default.cancelled.message'
 		} else if (params._action_option == "Reactivate") {
-			UPCMemberInstance.status = "EDITED"
+			UPCMemberInstance.status = "APPROVED"
 			codeValue = 'default.reactivated.message'
 		}
 
