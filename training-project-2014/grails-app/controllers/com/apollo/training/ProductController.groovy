@@ -14,18 +14,26 @@ class ProductController {
 		params.max = Math.min(max ?: 10, 100)
 
 		if(!params.searchable){
-			flash.message = ""
-			[ searchCategory:"",
-				searchKeyword:"",
-				productInstanceList: Product.list(params),
-				productInstanceTotal: Product.count()]
-		}else{
-			
-				def products =  Product.findAllByCompanyLikeAndStatusLike("%${params.searchable}%", "%${params.searchCategory}%", params)
-				[   searchCategory:params.searchCategory,
-					searchKeyword: params.searchable ,
-					productInstanceList: products ,
+			if(params.searchCategory.equals("ALL") || params.searchCategory == null){
+				[ searchCategory:params.searchCategory,
+					searchKeyword:params.searchable,
+					productInstanceList: Product.list(params),
 					productInstanceTotal: Product.count()]
+			}
+			else{
+				def products = Product.findWhere(status:params.searchCategory)
+				[ searchCategory:params.searchCategory,
+					searchKeyword:params.searchable,
+					productInstanceList: products,
+					productInstanceTotal: Product.count()]
+			}
+		}else{
+
+			def products =  Product.findAllByCompanyLikeAndStatusLike("%${params.searchable}%", "%${params.searchCategory}%", params)
+			[   searchCategory:params.searchCategory,
+				searchKeyword: params.searchable,
+				productInstanceList: products ,
+				productInstanceTotal: Product.count()]
 		}
 	}
 
@@ -214,7 +222,7 @@ class ProductController {
 			notFound()
 			return
 		}
-		
+
 		for(def companyList : Company.list()){
 			if(companyList.products.toString().equalsIgnoreCase(productInstance.brand.toString())){
 				flash.message = message(code: 'Cannot be deleted!')

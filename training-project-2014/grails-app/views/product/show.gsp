@@ -22,12 +22,13 @@
 		<ol class="property-list product">
 
 			<g:if test="${productInstance?.company}">
-				<li class="fieldcontain"><span id="company-label"
-					class="property-label"><g:message
-							code="product.company.label" default="Company" /></span> <span
-					class="property-value" aria-labelledby="company-label"><g:fieldValue
-							bean="${productInstance}" field="company" /></span></li>
-			</g:if>
+				<li class="fieldcontain">
+					<span id="company-label" class="property-label"><g:message code="product.company.label" default="Company" /></span>
+					
+						<span class="property-value" aria-labelledby="company-label"><g:link controller="company" action="show" id="${productInstance?.company?.id}">${productInstance?.company?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
 
 			<g:if test="${productInstance?.subCompany}">
 				<li class="fieldcontain"><span id="subCompany-label"

@@ -3,7 +3,7 @@ package com.apollo.training
 class Product{
 
 	enum SearchCategories{
-		ADDED("added"), EDITED("edited"), CANCELLED("cancelled"), APPROVED("approved"), REJECTED("rejected")
+		ALL("all"), ADDED("added"), EDITED("edited"), CANCELLED("cancelled"), APPROVED("approved"), REJECTED("rejected")
 
 		String searchCategory
 
@@ -19,7 +19,6 @@ class Product{
 		}
 	}
 
-	String company
 	String subCompany
 	ProductCategory productCategory
 	int GLN
@@ -55,7 +54,8 @@ class Product{
 		status defaultValue : "'ADDED'" 
 		}
 	
-	static hasOne = ProductCategory
+	static hasOne = [productCategory:ProductCategory, company:Company]
+	static belongsTo = [company:Company]
 
 	static constraints = {
 		company(blank:false,nullable:false)

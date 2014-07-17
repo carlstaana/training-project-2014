@@ -43,16 +43,19 @@
 					<tr>
 						<g:if test="${!searchKeyword}">
 							<g:sortableColumn property="company"
-								title="${message(code: 'client.company.label', default: 'Company')}" />
+								title="${message(code: 'client.company.label', default: 'Company')}"
+								params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 							<g:sortableColumn property="brand"
-								title="${message(code: 'client.brand.label', default: 'Brand')}" />
+								title="${message(code: 'client.brand.label', default: 'Brand')}"
+								params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 							<g:sortableColumn property="status"
-								title="${message(code: 'client.status.label', default: 'Status')}" />
+								title="${message(code: 'client.status.label', default: 'Status')}"
+								params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 						</g:if>
 						<g:else>
 							<g:sortableColumn property="company"
 								title="${message(code: 'client.company.label', default: 'Company')}"
-								params="searchCategory:searchCategory,searchable:searchKeyword]" />
+								params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 							<g:sortableColumn property="brand"
 								title="${message(code: 'client.brand.label', default: 'Brand')}"
 								params="[searchCategory:searchCategory,searchable:searchKeyword]" />
@@ -89,7 +92,8 @@
 
 			<div class="pagination">
 				<g:if test="${!searchKeyword}">
-					<g:paginate total="${productInstanceTotal}" />
+					<g:paginate total="${productInstanceTotal}" 
+					params="[searchCategory:searchCategory,searchable:searchKeyword]"/>
 				</g:if>
 				<g:else>
 					<g:paginate total="${productInstanceTotal}"

@@ -1,12 +1,11 @@
 <%@ page import="com.apollo.training.Product"%>
 
-<div
-	class="fieldcontain ${hasErrors(bean: productInstance, field: 'company', 'error')} required">
-	<label for="company"> <g:message code="product.company.label"
-			default="Company" /> <span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'company', 'error')} required">
+	<label for="company">
+		<g:message code="product.company.label" default="Company" />
+		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="company" required=""
-		value="${productInstance?.company}" />
+	<g:select id="company" name="company.id" from="${com.apollo.training.Company.list()}" optionKey="id" required="" value="${productInstance?.company?.id}" class="one-to-many" />
 
 </div>
 
