@@ -9,8 +9,12 @@
 	</head>
 	<body>
 		<div id="module">
+		<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 		<div id="list-productType" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<fieldset class="buttons topbutton">
+				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.back.to.main.label"/></a>
+				<g:link class="create" action="create"><g:message code="default.create.new.label" args="[entityName]" /></g:link>
+			</fieldset>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
