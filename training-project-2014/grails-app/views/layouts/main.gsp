@@ -65,12 +65,20 @@
 							<ul>							
 								<li><g:link action="create" controller="natureOfBusiness">Add Nature of Business</g:link></li>
 								<li><g:link action="index" controller="natureOfBusiness">Edit Nature of Business</g:link></li>
+							</ul>
+							</li>
+							<li><span>Product Type</span>
+							<ul>
 								<li><g:link action="create" controller="productType">Add Product Type</g:link></li>
 								<li><g:link action="index" controller="productType">Edit Product Type</g:link></li>
 							</ul>
 							</li>
-							<li><g:link action="create" controller="UPCMember">Add UPC Member</g:link></li>
-							<li><g:link action="index" controller="UPCMember">Edit UPC Member</g:link></li>
+							<li><span>UPC Member</span>
+							<ul>
+								<li><g:link action="create" controller="UPCMember">Add UPC Member</g:link></li>
+								<li><g:link action="index" controller="UPCMember">Edit UPC Member</g:link></li>
+							</ul>
+							</li>
 							<li>Non-Member (GLN)</li>
 							<li>EAN8</li>
 						</ul>
@@ -84,10 +92,8 @@
 					</li>
 					<li><span>Articles</span>
 						<ul>
-							<li>Add</li>
-							<li>Edit</li>
-							<li>Delete</li>
-							<li>Search</li>
+							<li><g:link action="create" controller="article">Add New Article</g:link></li>
+							<li><g:link action="index" controller="article">Edit Article Info</g:link></li>
 						</ul>
 					</li>
 					<li><span>Downloads</span>

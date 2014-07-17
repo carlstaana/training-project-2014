@@ -523,28 +523,26 @@ th:hover,tr:hover {
 
 /* ACTION BUTTONS */
 .buttons {
-	background-color: #efefef;
+	background-color: transparent;
 	overflow: hidden;
 	padding: 0.3em;
-	-moz-box-shadow: 0 0 3px 1px #aaaaaa;
-	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-	box-shadow: 0 0 3px 1px #aaaaaa;
 	margin: 0.1em 0 0 0;
 	border: none;
 }
 
 .buttons input,.buttons a {
-	background-color: transparent;
+	background-color: #2d8d34;
 	border: 0;
-	color: #666666;
+	color: #fff;
 	cursor: pointer;
 	display: inline-block;
 	margin: 0 0.25em 0;
 	overflow: visible;
 	padding: 0.25em 0.7em;
 	text-decoration: none;
-	-moz-border-radius: 0.3em;
-	-webkit-border-radius: 0.3em;
+	-moz-box-shadow: 0 0 3px 1px #aaaaaa;
+	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
+	box-shadow: 0 0 3px 1px #aaaaaa;
 	border-radius: 0.3em;
 }
 
@@ -566,7 +564,8 @@ th:hover,tr:hover {
 	text-decoration: underline;
 }
 
-.buttons .delete,.buttons .edit,.buttons .save {
+.buttons .delete,.buttons .edit,.buttons .save,.buttons .cancel,.buttons .reactivate,.buttons .approve,.buttons .cancelstatus,.buttons .reject
+	{
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -587,6 +586,26 @@ th:hover,tr:hover {
 
 .buttons .save {
 	background-image: url(../images/skin/database_save.png);
+}
+
+.buttons .cancel {
+	background-image: url(../images/skin/cancel.png);
+}
+
+.buttons .reactivate {
+	background-image: url(../images/skin/reactivate.png);
+}
+
+.buttons .approve {
+	background-image: url(../images/skin/approve.png);
+}
+
+.buttons .reject {
+	background-image: url(../images/skin/reject.png);
+}
+
+.buttons .cancelstatus {
+	background-image: url(../images/skin/cancelstatus.png);
 }
 
 a.skip {
@@ -653,7 +672,7 @@ a.skip {
 #module {
 	float: right;
 	width: 850px;
-	padding: 1em;
+	padding: 0.5em 1em;
 }
 
 #dashboard {
@@ -689,7 +708,7 @@ a.skip {
 	font-size: 11pt;
 }
 
-#dashboard ul.menu li ul li ul li {
+#dashboard ul li a {
 	font-size: 10pt;
 }
 
@@ -705,4 +724,13 @@ a.skip {
 
 table {
 	table-layout: fixed;
+}
+
+.search {
+	float: right;
+}
+
+.topbutton {
+	float: left;
+	padding: 0 0 1em 0;
 }
