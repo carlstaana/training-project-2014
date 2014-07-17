@@ -3,7 +3,7 @@ package com.apollo.training
 class Company {
 	
 	enum SearchCategories{
-		ADDED("added"), EDITED("edited"), CANCELLED("cancelled"), APPROVED("approved"), REJECTED("rejected")
+		ALL("all"), ADDED("added"), EDITED("edited"), CANCELLED("cancelled"), APPROVED("approved"), REJECTED("rejected")
 
 		String searchCategory
 
@@ -48,12 +48,11 @@ class Company {
 	String salesMarketingFax
 	String salesMarketingEmail
 	NatureOfBusiness natureOfBusiness
-	Product products
 	Date validity
 	View view
 	String status
 
-	static hasMany = [ companyRemarks : CompanyRemarks, companyPayment : CompanyPayment ]
+	static hasMany = [ companyRemarks : CompanyRemarks, companyPayment : CompanyPayment, products: Product ]
 
 	static constraints = {
 		companyName(blank:false,nullable:false,size:8..30)
@@ -90,17 +89,18 @@ class Company {
 		salesMarketingFax(blank:true,nullable:true)
 		salesMarketingEmail(blank:true,nullable:true,email:true)
 		natureOfBusiness(blank:false,nullable:false)
-		products(blank:false,nullable:false)
 		validity(blank:false,nullable:false)
 		view(blank:false,nullable:false)
 		companyRemarks(blank:true,nullable:true,display:false)
 		companyPayment(blank:true,nullable:true,display:false)
+		products(blank:true,nullable:true,display:false)
 		status(nullable:true)
 	}
 	
 	static mapping = {
 		companyRemarks cascade: 'all-delete-orphan'
 		companyPayment cascade: 'all-delete-orphan'
+		products cascade: 'all-delete-orphan'
 	}
 
 

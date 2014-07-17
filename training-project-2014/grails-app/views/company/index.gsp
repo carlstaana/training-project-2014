@@ -41,32 +41,36 @@
 
 					<g:if test="${!searchKeyword}">
 						<g:sortableColumn property="companyName"
-							title="${message(code: 'company.companyName.label', default: 'Company Name')}" />
+							title="${message(code: 'company.companyName.label', default: 'Company Name')}" 
+							params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 
 						<g:sortableColumn property="membershipCategory"
-							title="${message(code: 'company.membershipCategory.label', default: 'Membership Category')}" />
+							title="${message(code: 'company.membershipCategory.label', default: 'Membership Category')}" 
+							params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 
 						<g:sortableColumn property="address"
-							title="${message(code: 'company.address.label', default: 'Address')}" />
+							title="${message(code: 'company.address.label', default: 'Address')}" 
+							params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 
 						<g:sortableColumn property="status"
-							title="${message(code: 'company.status.label', default: 'Status')}" />
+							title="${message(code: 'company.status.label', default: 'Status')}" 
+							params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 					</g:if>
 					<g:else>
 						<g:sortableColumn property="companyName"
 							title="${message(code: 'company.companyName.label', default: 'Company Name')}"
-							params="searchCategory:searchCategory,searchable:searchKeyword]" />
+							params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 						<g:sortableColumn property="membershipCategory"
 							title="${message(code: 'company.membershipCategory.label', default: 'Membership Category')}"
-							params="searchCategory:searchCategory,searchable:searchKeyword]" />
+							params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 
 						<g:sortableColumn property="address"
 							title="${message(code: 'company.address.label', default: 'Address')}"
-							params="searchCategory:searchCategory,searchable:searchKeyword]" />
+							params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 
 						<g:sortableColumn property="status"
 							title="${message(code: 'company.status.label', default: 'Status')}"
-							params="searchCategory:searchCategory,searchable:searchKeyword]" />
+							params="[searchCategory:searchCategory,searchable:searchKeyword]" />
 					</g:else>
 
 				</tr>
@@ -97,7 +101,8 @@
 		</table>
 		<div class="pagination">
 			<g:if test="${!searchKeyword}">
-				<g:paginate total="${companyInstanceTotal}" />
+				<g:paginate total="${companyInstanceTotal}" 
+				params="[searchCategory:searchCategory,searchable:searchKeyword]"/>
 			</g:if>
 			<g:else>
 				<g:paginate total="${companyInstanceTotal}"

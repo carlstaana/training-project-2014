@@ -323,18 +323,6 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'products', 'error')} required">
-	<label for="products"> <g:message code="company.products.label"
-			default="Products" /> <span class="required-indicator">*</span>
-	</label>
-	<g:select id="products" name="products.id"
-		from="${com.apollo.training.Product.list()}" optionKey="id"
-		required="" value="${companyInstance?.products?.id}"
-		class="many-to-one" />
-
-</div>
-
-<div
 	class="fieldcontain ${hasErrors(bean: companyInstance, field: 'validity', 'error')} required">
 	<label for="validity"> <g:message code="company.validity.label"
 			default="Validity" /> <span class="required-indicator">*</span>

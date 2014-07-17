@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div id="module">
+
 			<h1>
 			<g:message code="default.show.label" args="[entityName]" />
 		</h1>
@@ -17,7 +18,8 @@
 		<g:if test="${flash.message}">
 			<div class="message" role="status">
 				${flash.message}
-			</div>
+
+	</div>
 		</g:if>
 		<ol class="property-list company">
 
@@ -272,14 +274,16 @@
 			</g:if>
 
 			<g:if test="${companyInstance?.products}">
-				<li class="fieldcontain"><span id="products-label"
-					class="property-label"><g:message
-							code="company.products.label" default="Products" /></span> <span
-					class="property-value" aria-labelledby="products-label"><g:link
-							controller="product" action="show"
-							id="${companyInstance?.products?.id}">
-							${companyInstance?.products?.encodeAsHTML()}
-						</g:link></span></li>
+				<li class="fieldcontain">
+					<span id="products-label" class="property-label">
+						<g:message code="company.products.label" default="Products" />
+					</span> 
+					<span class="property-value" aria-labelledby="products-label">
+							<g:each in="${companyInstance?.products}" var="products">
+								<tr><td> ${products.brand }<br> </td></tr>
+							</g:each>
+					</span>
+				</li>
 			</g:if>
 
 			<g:if test="${companyInstance?.validity}">
