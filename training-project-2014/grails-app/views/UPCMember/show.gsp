@@ -9,8 +9,8 @@
 	</head>
 	<body>
 		<div id="module">
+		<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 		<div id="show-UPCMember" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -244,7 +244,7 @@
 						<g:actionSubmit class="approve" action="option" value="${message(code: 'default.button.approve.label', default: 'Approve')}" onclick="return confirm('${message(code: 'default.button.approve.confirm.message', default: 'Are you sure you want to approve this membership?')}');" />
 					</g:if>
 					<g:elseif test="${UPCMemberInstance?.status == 'APPROVED'}">
-						<g:actionSubmit class="cancelUPCMember" action="option" value="${message(code: 'default.button.cancel.label', default: 'Cancel UPC Member')}" onclick="return confirm('${message(code: 'default.button.cancel.confirm.message', default: 'Are you sure you want to cancel this membership?')}');" />
+						<g:actionSubmit class="cancelstatus" action="option" value="${message(code: 'default.button.cancel.membership.label', default: 'Cancel UPC Member')}" onclick="return confirm('${message(code: 'default.button.cancel.confirm.message', default: 'Are you sure you want to cancel this membership?')}');" />
 					</g:elseif>
 					<g:elseif test="${UPCMemberInstance?.status == 'CANCELLED'}">
 						<g:actionSubmit class="reactivate" action="option" value="${message(code: 'default.button.reactivate.label', default: 'Reactivate')}" onclick="return confirm('${message(code: 'default.button.reactivate.confirm.message', default: 'Are you sure you want to reactivate this membership?')}');" />

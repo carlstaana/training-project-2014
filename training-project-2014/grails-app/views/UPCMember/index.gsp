@@ -10,21 +10,26 @@
 </head>
 <body>
 	<div id="module">
-	<div id="list-UPCMember" class="content scaffold-list" role="main">
 		<h1>
 			<g:message code="default.list.label" args="[entityName]" />
 		</h1>
-		<g:if test="${flash.message}">
-			<div class="message" role="status">
-				${flash.message}
-			</div>
-		</g:if>
-		<fieldset style="padding-left: 0">
+	<div id="list-UPCMember" class="content scaffold-list" role="main">
+			<fieldset class="buttons topbutton">
+				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.back.to.main.label"/></a>
+				<g:link class="create" action="create"><g:message code="default.create.new.label" args="[entityName]" /></g:link>
+			</fieldset>
+		<fieldset class="search">
 			<g:form action="index" method="GET">
 				<label for="status">Search for Membership Status:</label>
 				<g:select name="status" from="${['ALL', 'ADDED', 'EDITED', 'APPROVED', 'CANCELLED', 'REJECTED']}" value="${params.status}" onchange="submit()"/>
 			</g:form>
 		</fieldset>
+		
+		<g:if test="${flash.message}">
+			<div class="message" role="status">
+				${flash.message}
+			</div>
+		</g:if>
 		<g:if
 			test="${UPCMemberInstanceList != null && !UPCMemberInstanceList.isEmpty()}">
 			<table>
