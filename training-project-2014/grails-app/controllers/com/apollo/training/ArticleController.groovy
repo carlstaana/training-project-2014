@@ -9,6 +9,7 @@ import grails.transaction.Transactional
 class ArticleController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
+	def CustomJasperService
 	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -144,9 +145,7 @@ class ArticleController {
             '*'{ render status: NOT_FOUND }
         }
     }
-	
-	
-	def CustomJasperService
+
 	/**
 	 * controller the report generated
 	 */
