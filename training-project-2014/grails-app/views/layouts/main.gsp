@@ -12,14 +12,105 @@
 		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
+        <!-- <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'gs1training.css')}"></link> -->
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<g:layoutHead/>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
+		<div role="header"><h4 class="topNotes">Hi! {name here} | Help | Logout</h4></div>
+		<div id="clear"></div>
+		<div id="gs1Logo" role="banner">
+			<a href=""><asset:image src="myGS1_logo.jpg" alt="GS1"/></a>
+			<div id="bgtext">
+				<div id="navbar">
+					<ul>
+						<li><a href="">HOME</a></li>
+						<li><a href="">ABOUT</a></li>
+						<li><a href="">CONTACT US</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="gs1Tag" role="tagline">
+			<asset:image src="myGS1_tag.jpg" alt="GS1 Tag Line"/>
+		</div>
+		<div id="clear"></div>
+		<div id="dashboard-wrapper">
+			<div id="dashboard">
+				<h1>MyGS1 Dashboard</h1>
+				<ul class="menu">
+					<li><span>Data Maintenance</span>
+						<ul>
+							<li><span>Company</span>
+							<ul>
+								<li><g:link action="create" controller="company">Add Company</g:link></li>
+								<li><g:link action="index" controller="company">Edit Company Info</g:link></li>
+								<li><g:link action="create" controller="batchPayment">Apply Batch Payment</g:link></li>
+							</ul>
+							</li>
+							<li><span>Product</span>
+							<ul>
+								<li><g:link action="create" controller="product">Add Product</g:link></li>
+								<li><g:link action="index" controller="product">Edit Product Info</g:link></li>
+							</ul>
+							</li>
+							<li><span>Product Category</span>
+							<ul>							
+								<li><g:link action="create" controller="productCategory">Add Product Category</g:link></li>
+								<li><g:link action="index" controller="productCategory">Edit Product Category</g:link></li>
+							</ul>
+							</li>
+							<li><span>Nature of Business</span>
+							<ul>							
+								<li><g:link action="create" controller="natureOfBusiness">Add Nature of Business</g:link></li>
+								<li><g:link action="index" controller="natureOfBusiness">Edit Nature of Business</g:link></li>
+								<li><g:link action="create" controller="productType">Add Product Type</g:link></li>
+								<li><g:link action="index" controller="productType">Edit Product Type</g:link></li>
+							</ul>
+							</li>
+							<li><g:link action="create" controller="UPCMember">Add UPC Member</g:link></li>
+							<li><g:link action="index" controller="UPCMember">Edit UPC Member</g:link></li>
+							<li>Non-Member (GLN)</li>
+							<li>EAN8</li>
+						</ul>
+					</li>
+					<li><span>User Management</span>
+						<ul>
+							<li>User</li>
+							<li>Role</li>
+							<li>GS1 Users</li>
+						</ul>
+					</li>
+					<li><span>Articles</span>
+						<ul>
+							<li>Add</li>
+							<li>Edit</li>
+							<li>Delete</li>
+							<li>Search</li>
+						</ul>
+					</li>
+					<li><span>Downloads</span>
+						<ul>
+							<li>Add/Upload</li>
+							<li>Edit</li>
+							<li>Delete</li>
+							<li>Download</li>
+						</ul>
+					</li>
+					<li><span>GS1 Philippines Community Forum</span>
+						<ul>
+							<li><g:link action="index" controller="topic">View Forum</g:link></li>
+							<li>Edit</li>
+							<li>Delete</li>
+							<li>Download</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
+		<div class="footer" role="contentinfo">Copyright &copy; 2014-2015. Apollo Technologies, Inc. by TEAMAWA</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 	</body>
 </html>
