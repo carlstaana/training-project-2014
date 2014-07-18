@@ -9,7 +9,7 @@ import com.sun.xml.internal.bind.v2.model.core.ID;
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_ADMIN'])
+@Secured(['IS_AUTHENTICATED_FULLY'])
 @Transactional(readOnly = true)
 class UPCMemberController {
 
@@ -103,6 +103,7 @@ class UPCMemberController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def delete(UPCMember UPCMemberInstance) {
 
@@ -125,6 +126,7 @@ class UPCMemberController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def option(UPCMember UPCMemberInstance) {
 		if (UPCMemberInstance == null) {
