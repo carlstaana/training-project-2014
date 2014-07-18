@@ -302,25 +302,26 @@
 				<g:link class="edit" action="edit" resource="${productInstance}">
 					<g:message code="default.button.edit.label" default="Edit" />
 				</g:link>
-				<g:actionSubmit class="delete" action="delete"
-					value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-					onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-			
-				<g:if test="${productInstance?.status != 'CANCELLED'}">
-					<g:actionSubmit action="cancel" class="cancel"
-						value="${message(code: 'default.button.cancel.label', default: 'Cancel Product')}" />
-					<g:if test="${productInstance?.status == 'ADDED' || productInstance?.status == 'EDITED'}">
-						<g:actionSubmit action="reject" class="reject"
-							value="${message(code: 'default.button.reject.label', default: 'Reject')}" />
-						<g:actionSubmit action="approve" class="approve"
-							value="${message(code: 'default.button.approve.label', default: 'Approve')}" />
-					</g:if>
-				</g:if>
-				<g:else>
-					<g:actionSubmit action="reactivate" class="reactivate"
-						value="${message(code: 'default.button.reactivate.label', default: 'Reactivate')}" />
-				</g:else>
+				<sec:ifAllGranted roles="ROLE_ADMIN">
+					<g:actionSubmit class="delete" action="delete"
+						value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+						onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				
+					<g:if test="${productInstance?.status != 'CANCELLED'}">
+						<g:actionSubmit action="cancel" class="cancel"
+							value="${message(code: 'default.button.cancel.label', default: 'Cancel Product')}" />
+						<g:if test="${productInstance?.status == 'ADDED' || productInstance?.status == 'EDITED'}">
+							<g:actionSubmit action="reject" class="reject"
+								value="${message(code: 'default.button.reject.label', default: 'Reject')}" />
+							<g:actionSubmit action="approve" class="approve"
+								value="${message(code: 'default.button.approve.label', default: 'Approve')}" />
+						</g:if>
+					</g:if>
+					<g:else>
+						<g:actionSubmit action="reactivate" class="reactivate"
+							value="${message(code: 'default.button.reactivate.label', default: 'Reactivate')}" />
+					</g:else>
+				</sec:ifAllGranted>
 				<g:link class="cancel" action="index"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
 				
 			</fieldset>
