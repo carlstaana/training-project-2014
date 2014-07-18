@@ -111,6 +111,8 @@
 					</li>
 					<li><span>User Management</span>
 						<ul>
+							<li><g:link action="create" controller="user">Add User</g:link></li>
+							<li><g:link action="index" controller="user">Edit User</g:link></li>
 							<li><g:link action="create" controller="GS1User">Add GS1User</g:link></li>
 							<li><g:link action="index" controller="GS1User">Edit GS1User</g:link></li>
 						</ul>

@@ -65,8 +65,8 @@
 						<ul class="homeviewul">
 							<li class="homeviewli"><h1>User Management</h1>
 								<ul>
-									<li><g:link action="create" controller="GS1User">Add GS1User</g:link></li>
-									<li><g:link action="index" controller="GS1User">Edit GS1User</g:link></li>
+									<li><g:link action="index" controller="user">Manage Users</g:link></li>
+									<li><g:link action="index" controller="GS1User">Manage GS1Users</g:link></li>
 								</ul>
 						</ul>
 						<ul class="homeviewul">
