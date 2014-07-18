@@ -21,13 +21,15 @@ class UPCMemberController {
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 		
-		if(params.status == null) {
+		if(params.query == null) {
 			respond UPCMember.list(params), model:[UPCMemberInstanceCount: UPCMember.count()]
 		} else {
 			def upcMemberList = UPCMember.createCriteria().list (params) {
-
-				if ( params.status != 'ALL' ) {
-					ilike("status", "%${params.status}%")
+				or {
+					ilike("status", "%${params.query}%")
+					ilike("companyName", "%${params.query}%")
+					ilike("upcCoordinatorName", "%${params.query}%")
+					ilike("upcCode", "%${params.query}%")
 				}
 			}
 			
