@@ -214,6 +214,7 @@ class ProductController {
 	@Transactional
 	def save(Product productInstance) {
 		def user = springSecurityService.currentUser.company
+		def role = springSecurityService.getPrincipal().getAuthorities()
 		if (productInstance == null) {
 			notFound()
 			return
@@ -224,8 +225,9 @@ class ProductController {
 			return
 		}
 
-		productInstance.company = Company.findByCompanyName(user)
-		println productInstance.company
+		if(role.toString().equals("[ROLE_USER]")){
+			productInstance.company = Company.findByCompanyName(user)
+		}
 
 		productInstance.status = productInstance.status?: "ADDED"
 

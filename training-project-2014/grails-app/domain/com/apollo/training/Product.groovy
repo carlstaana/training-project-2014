@@ -123,7 +123,7 @@ class Product{
 	}
 
 	String toString(){
-		return "${brand}"
+		brand
 	}
 	
 	def springSecurityService
