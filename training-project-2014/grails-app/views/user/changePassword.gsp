@@ -6,21 +6,22 @@
 <meta name="layout" content="main" />
 <title>Forgot Password</title>
 <style>
-#body_content {
-	padding-top: 9em;
-}
+	.noclass tr:hover {
+		background: transparent;
+	}
 </style>
 </head>
 <body>
-	<table>
-		<tbody>
-			<tr>
-				<td>
-					<div>
+
+					<div id="module">
+							<h1>
+			<g:message code="Change Password" />
+		</h1>
+		<div class="content">
 						<g:form action="changePassword" controller="user"
 							autocomplete='off'>
 							<g:if test="${flash.error}">
-								<div class="error" id="message">
+								<div class="errors" id="message">
 									${flash.error}
 								</div>
 							</g:if>
@@ -30,20 +31,8 @@
 								</div>
 							</g:if>
 							<div>
-								<table style="border: none">
-									<tbody>
-										<tr class="prop">
-											<td width="320">
-												<table style="border: none">
-													<tbody>
-														<tr>
-															<td></td>
-														</tr>
-													</tbody>
-												</table>
-											</td>
-											<td>
-												<table>
+
+												<table class="noclass">
 													<tbody>
 
 														<tr class="prop">
@@ -77,32 +66,17 @@
 
 													
 													</tbody>
-												</table>
-											</td>
-											<td width="320">
-												<table style="border: none">
-													<tbody>
-														<tr>
-															<td></td>
-														</tr>
-													</tbody>
-												</table>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+													</table>
+
 							</div>
-							<div align="center">
-								<input type="button" value="Cancel"
+							<fieldset class="buttons">
+								<input class="changepass" type="button" value="Cancel"
 									onclick="location.href='index';" />
-								<g:actionSubmit class="view" value="Submit"
-									action="changePassword" controller="user" />
-							</div>
+								<g:actionSubmit class="submitpass" value="Submit"
+									action="changePassword" controller="GS1User" />
+							</fieldset>
 						</g:form>
 					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+		</div>
 </body>
 </html>
