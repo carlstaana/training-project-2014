@@ -19,13 +19,13 @@
 				<g:link class="create" action="create"><g:message code="default.create.new.label" args="[entityName]" /></g:link>
 			</fieldset>
 		<fieldset class="search">
-			<g:form action="index" method="GET">
+			<g:form method="GET">
 				<%--
 				<label for="status">Search for Membership Status:</label>
-				<g:select name="status" from="${['ALL', 'ADDED', 'EDITED', 'APPROVED', 'CANCELLED', 'REJECTED']}" value="${params.status}" onchange="submit()"/>
 				--%>
-				<label for="query">Search for Member:</label>
-				<g:textField name="query" value="${params.query}" />
+				<g:select name="status" from="${['ALL', 'ADDED', 'EDITED', 'APPROVED', 'CANCELLED', 'REJECTED']}" value="${params.status}" />
+				<g:textField name="query" value="${params.query}" placeholder="Enter Company Name..." />
+				<g:actionSubmit action="index" value="Search" />
 			</g:form>
 		</fieldset>
 		<div id="clear"></div>

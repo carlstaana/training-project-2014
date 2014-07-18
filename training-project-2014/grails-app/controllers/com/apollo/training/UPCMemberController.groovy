@@ -25,11 +25,13 @@ class UPCMemberController {
 			respond UPCMember.list(params), model:[UPCMemberInstanceCount: UPCMember.count()]
 		} else {
 			def upcMemberList = UPCMember.createCriteria().list (params) {
+				
+				if (params.status != "ALL") {
+					ilike("status", "%${params.status}%")
+				}
+				
 				or {
-					ilike("status", "%${params.query}%")
 					ilike("companyName", "%${params.query}%")
-					ilike("upcCoordinatorName", "%${params.query}%")
-					ilike("upcCode", "%${params.query}%")
 				}
 			}
 			
