@@ -22,16 +22,25 @@ class UserController {
 
 		// get the role
 		def roles = springSecurityService.getPrincipal().getAuthorities()
-		def adminRole = Role.findByAuthority('ROLE_ADMIN')
-		
+		//def adminRole = Role.findByAuthority('ROLE_ADMIN')
+
 		params.max = Math.min(params.max ? params.int('max') : 5, 100)
 
 		def userList = User.createCriteria().list (params) {
-		if(params.query == null){
-			respond User.list(params), model:[userInstanceCount: User.count()]
-			}	
+			if(params.query == null) {
+				and {
+					ne("username", springSecurityService.currentUser.username.toString())
+				}
+				//respond User.list(params), model:[userInstanceCount: User.count()]
+			} else {
 				or {
-				eq("username", "${params.query}")
+					eq("username", "${params.query}")
+					ilike("emailAddress", "%${params.query}%")
+					ilike("lastName", "%${params.query}%")
+				}
+				and {
+					ne("username", springSecurityService.currentUser.username.toString())
+				}
 			}
 		}
 
@@ -130,7 +139,8 @@ class UserController {
 		}
 
 		//userInstance.delete flush:true
-
+		def roles = springSecurityService.getPrincipal().getAuthorities()
+		
 		Collection<UserRole> userRoles = UserRole.findAllByUser(userInstance)
 		userRoles*.delete()
 		userInstance.delete()
@@ -180,14 +190,14 @@ class UserController {
 				flash.message = "Password Changed!"
 				redirect action:"changePassword"
 			} else {
-			flash.error = "Password is not equal!"
+				flash.error = "Password is not equal!"
 				redirect action:"changePassword"
 			}
 		}
-		
-/*		else if(oldPassword != null || newPassword!= null || retype != null) {
-			render "Error! All fields required."
-		}
-*/
+
+		/*		else if(oldPassword != null || newPassword!= null || retype != null) {
+		 render "Error! All fields required."
+		 }
+		 */
 	}
 }
