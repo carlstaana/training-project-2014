@@ -56,6 +56,7 @@
 			<asset:image src="myGS1_tag.jpg" alt="GS1 Tag Line"/>
 		</div>
 		<div id="clear"></div>
+		<sec:ifLoggedIn>
 		<div id="dashboard-wrapper">
 			<div id="dashboard">
 				<h1>MyGS1 Dashboard</h1>
@@ -135,6 +136,7 @@
 				</ul>
 			</div>
 		</div>
+		</sec:ifLoggedIn>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">Copyright &copy; 2014-2015. Apollo Technologies, Inc. by TEAMAWA</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
