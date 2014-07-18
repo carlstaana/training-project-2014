@@ -10,32 +10,78 @@ import grails.plugin.springsecurity.annotation.Secured
 class CompanyController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: ["POST", "DELETE"]]
+	def springSecurityService
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 
+		def role = springSecurityService.getPrincipal().getAuthorities()
+
 		if(!params.searchable){
 			if(params.searchCategory.equals("ALL") || params.searchCategory == null){
-				[ searchCategory:params.searchCategory,
-					searchKeyword:params.searchable,
-					companyInstanceList: Company.list(params),
-					companyInstanceTotal: Company.count()]
+				if(role.toString().equals("[ROLE_USER]")){
+					def companies = Company.findAllByViewNotEqual(View.RESTRICTED)
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						companyInstanceList: companies,
+						companyInstanceTotal: Company.count()]
+				}
+				else{
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						companyInstanceList: Company.list(params),
+						companyInstanceTotal: Company.count()]
+				}
 			}
 			else{
-				def companies = Company.findWhere(status:params.searchCategory)
-				[ searchCategory:params.searchCategory,
-					searchKeyword:params.searchable,
-					companyInstanceList: companies,
-					companyInstanceTotal: Company.count()]
+				if(role.toString().equals("[ROLE_USER]")){
+					def companies = Company.findAllByStatusAndViewNotEqual(params.searchCategory, View.RESTRICTED)
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						companyInstanceList: companies,
+						companyInstanceTotal: Company.count()]
+				}
+				else{
+					def companies = Company.findWhere(status:params.searchCategory)
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						companyInstanceList: companies,
+						companyInstanceTotal: Company.count()]
+				}
 			}
 		}else{
-
-			def companies =  Company.findAllByCompanyNameLikeAndStatusLike("%${params.searchable}%", "%${params.searchCategory}%", params)
-			[   searchCategory:params.searchCategory,
-				searchKeyword: params.searchable ,
-				companyInstanceList: companies ,
-				companyInstanceTotal: Company.count()]
+			if(role.toString().equals("[ROLE_USER]")){
+				if(params.searchCategory.equals("ALL") || params.searchCategory == null){
+					def companies =  Company.findAllByCompanyNameLikeAndViewLike("%${params.searchable}%", View.MEMBER, params)
+					[   searchCategory:params.searchCategory,
+						searchKeyword: params.searchable ,
+						companyInstanceList: companies ,
+						companyInstanceTotal: Company.count()]
+				}
+				else{
+					def companies =  Company.findAllByCompanyNameLikeAndStatusLikeAndViewLike("%${params.searchable}%", "%${params.searchCategory}%", View.MEMBER, params)
+					[   searchCategory:params.searchCategory,
+						searchKeyword: params.searchable ,
+						companyInstanceList: companies ,
+						companyInstanceTotal: Company.count()]
+				}
+			}
+			else{
+				if(params.searchCategory.equals("ALL") || params.searchCategory == null){
+					def companies =  Company.findAllByCompanyNameLike("%${params.searchable}%", params)
+					[   searchCategory:params.searchCategory,
+						searchKeyword: params.searchable ,
+						companyInstanceList: companies ,
+						companyInstanceTotal: Company.count()]
+				} else{
+					def companies =  Company.findAllByCompanyNameLikeAndStatusLike("%${params.searchable}%", "%${params.searchCategory}%", params)
+					[   searchCategory:params.searchCategory,
+						searchKeyword: params.searchable ,
+						companyInstanceList: companies ,
+						companyInstanceTotal: Company.count()]
+				}
+			}
 		}
 	}
 
