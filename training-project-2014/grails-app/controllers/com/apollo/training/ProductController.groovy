@@ -171,6 +171,7 @@ class ProductController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	@Transactional
 	def save(Product productInstance) {
+		def user = springSecurityService.currentUser.company
 		if (productInstance == null) {
 			notFound()
 			return
@@ -180,6 +181,9 @@ class ProductController {
 			respond productInstance.errors, view:'create'
 			return
 		}
+		
+		productInstance.company = Company.findByCompanyName(user)
+		println productInstance.company
 
 		productInstance.status = productInstance.status?: "ADDED"
 
