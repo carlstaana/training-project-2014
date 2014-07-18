@@ -20,8 +20,12 @@
 			</fieldset>
 		<fieldset class="search">
 			<g:form action="index" method="GET">
+				<%--
 				<label for="status">Search for Membership Status:</label>
 				<g:select name="status" from="${['ALL', 'ADDED', 'EDITED', 'APPROVED', 'CANCELLED', 'REJECTED']}" value="${params.status}" onchange="submit()"/>
+				--%>
+				<label for="query">Search for Member:</label>
+				<g:textField name="query" value="${params.query}" />
 			</g:form>
 		</fieldset>
 		<div id="clear"></div>

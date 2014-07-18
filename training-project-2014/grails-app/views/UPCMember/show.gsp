@@ -236,6 +236,7 @@
 			<g:form resource="${UPCMemberInstance}">
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${UPCMemberInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<sec:ifAllGranted roles="ROLE_ADMIN">
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					<g:if test="${UPCMemberInstance?.status == 'ADDED' || UPCMemberInstance?.status == 'EDITED'  || UPCMemberInstance?.status == 'REJECTED'}">
 						<g:if test="${UPCMemberInstance?.status != 'REJECTED'}">
@@ -249,6 +250,7 @@
 					<g:elseif test="${UPCMemberInstance?.status == 'CANCELLED'}">
 						<g:actionSubmit class="reactivate" action="option" value="${message(code: 'default.button.reactivate.label', default: 'Reactivate')}" onclick="return confirm('${message(code: 'default.button.reactivate.confirm.message', default: 'Are you sure you want to reactivate this membership?')}');" />
 					</g:elseif>
+					</sec:ifAllGranted>
 					<g:link class="cancel" action="index"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
 				</fieldset>
 			</g:form>
