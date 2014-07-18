@@ -1,8 +1,10 @@
+<%@ page import="com.apollo.training.Product"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
+		<title>MyGS1 Philippines</title>
 		<style>
 			.homeviewtable {
 				margin-top: 1em;
@@ -17,7 +19,7 @@
 			    border-collapse: collapse;
 			    border: solid blue 1px;
 			    list-style-type: none;
-			    height: 300px;
+			    height: 280px;
 			    margin-right: 1em;
 			    vertical-align: top;
 			}
@@ -56,23 +58,22 @@
 									<li><g:link action="index" controller="productType">Product Type</g:link></li>
 									<li><g:link action="index" controller="UPCMember">UPC Members</g:link></li>
 									<li>Non-Member (GLN)</li>
-									<li>EAN8</li>
+									<li><g:link action="index" controller="EAN8">EAN8</g:link></li>
 								</ul>
 							</li>
 						</ul>
 						<ul class="homeviewul">
 							<li class="homeviewli"><h1>User Management</h1>
 								<ul>
-									<li>User</li>
-									<li>Role</li>
-									<li>GS1 Users</li>
+									<li><g:link action="create" controller="GS1User">Add GS1User</g:link></li>
+									<li><g:link action="index" controller="GS1User">Edit GS1User</g:link></li>
 								</ul>
 						</ul>
 						<ul class="homeviewul">
 							<li class="homeviewli"><h1>Notification</h1>
 								<ul>
-									<li>Approved Products</li>
-									<li>Cancelled Products</li>
+									<li>Approved Products <span class="count">(${Product?.countByStatus("APPROVED")})</span></li>
+									<li>Cancelled Products <span class="count">(${Product?.countByStatus("CANCELLED")})</span></li>
 								</ul>
 						</ul>
 					</td>
@@ -89,19 +90,15 @@
 						<ul class="homeviewul">
 							<li class="homeviewli"><h1>Downloads</h1>
 								<ul>
-									<li>Add/Upload</li>
-									<li>Edit</li>
-									<li>Delete</li>
-									<li>Download</li>
+									<li><g:link action="create" controller="download">Upload File</g:link></li>
+									<li><g:link action="index" controller="download">View Files</g:link></li>
 								</ul>
 						</ul>
 						<ul class="homeviewul">
 							<li class="homeviewli"><h1>GS1 Philippines Community Forum</h1>
 								<ul>
+									<li><g:link action="create" controller="topic">Add Topic</g:link></li>
 									<li><g:link action="index" controller="topic">View Forum</g:link></li>
-									<li>Edit</li>
-									<li>Delete</li>
-									<li>Download</li>
 								</ul>
 							</li>
 						</ul>

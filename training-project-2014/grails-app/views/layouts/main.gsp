@@ -101,14 +101,18 @@
 							</ul>
 							</li>
 							<li>Non-Member (GLN)</li>
-							<li>EAN8</li>
+							<li><span>EAN8</span>
+							<ul>
+								<li><g:link action="create" controller="EAN8">Add EAN8</g:link></li>
+								<li><g:link action="index" controller="EAN8">Edit EAN8</g:link></li>
+							</ul>
+							</li>
 						</ul>
 					</li>
 					<li><span>User Management</span>
 						<ul>
-							<li>User</li>
-							<li>Role</li>
-							<li>GS1 Users</li>
+							<li><g:link action="create" controller="GS1User">Add GS1User</g:link></li>
+							<li><g:link action="index" controller="GS1User">Edit GS1User</g:link></li>
 						</ul>
 					</li>
 					<li><span>Articles</span>
@@ -119,18 +123,14 @@
 					</li>
 					<li><span>Downloads</span>
 						<ul>
-							<li>Add/Upload</li>
-							<li>Edit</li>
-							<li>Delete</li>
-							<li>Download</li>
+							<li><g:link action="create" controller="download">Upload File</g:link></li>
+							<li><g:link action="index" controller="download">View Files</g:link></li>
 						</ul>
 					</li>
 					<li><span>GS1 Philippines Community Forum</span>
 						<ul>
+							<li><g:link action="create" controller="topic">Add Topic</g:link></li>
 							<li><g:link action="index" controller="topic">View Forum</g:link></li>
-							<li>Edit</li>
-							<li>Delete</li>
-							<li>Download</li>
 						</ul>
 					</li>
 				</ul>
