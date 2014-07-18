@@ -47,7 +47,7 @@
 						<div class="fieldcontain ${hasErrors(bean: postInstance, field: 'message', 'error')} required" style="float:left;padding-right:1em; padding-bottom:1em;">
 							<g:textArea class="postInput" name="message" required="" />
 						<!-- set value of user name -->
-							<input type="hidden" name="author" id="author" value="Admin" />
+							<input type="hidden" name="author" id="author" value="${postInstance.author}" />
 					
 						<g:submitButton name="create" class="save" value="Post" />
 						</div>
