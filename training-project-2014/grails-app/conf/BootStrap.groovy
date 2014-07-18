@@ -53,8 +53,8 @@ class BootStrap {
 			UserRole.create testUser2, adminRole
 		}
 		
-		def testUser3 = User.findByUsername('kritoferlora') ?: new User(
-			username: 'kritoferlora',
+		def testUser3 = User.findByUsername('kristoferlora') ?: new User(
+			username: 'kristoferlora',
 			password: 'ap0ll0',
 			retypePassword: 'ap0ll0',
 			lastName: 'Lora',

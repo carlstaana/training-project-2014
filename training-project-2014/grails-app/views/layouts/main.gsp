@@ -112,8 +112,8 @@
 								</ul>
 								</li>
 							</sec:ifAllGranted>
-							<li>Non-Member (GLN)</li>
 							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<li>Non-Member (GLN)</li>
 								<li><span>EAN8</span>
 								<ul>
 									<li><g:link action="create" controller="EAN8">Add EAN8</g:link></li>
