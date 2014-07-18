@@ -16,9 +16,15 @@ class TopicController {
         params.max = Math.min(max ?: 10, 100)
         respond Topic.list(params), model:[topicInstanceCount: Topic.count()]
     }
-
+	
+	def springSecurityService
+	
     def show(Topic topicInstance) {
+		def username = springSecurityService.currentUser.username
+		def postInstance = new Post()
+		postInstance.author = username
         respond topicInstance
+		respond postInstance
     }
 
     def create() {
