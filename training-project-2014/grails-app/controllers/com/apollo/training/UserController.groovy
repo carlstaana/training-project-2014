@@ -27,25 +27,11 @@ class UserController {
 		params.max = Math.min(params.max ? params.int('max') : 5, 100)
 
 		def userList = User.createCriteria().list (params) {
-			if (params.query == null) {
-				and {
-					ne 'username', springSecurityService.currentUser.username
-				}
-				respond User.list(params), model:[userInstanceCount: User.count()]
-			}
-			or {
-				eq("username", "%${params.query}%")
-				eq("emailAddress", "%${params.query}%")
-				ilike("company", "%${params.query}%")
-			}
-			and {
-				if (roles == adminRole) {
-					ne 'username', springSecurityService.currentUser.username
-				} else {
-					ne 'username', springSecurityService.currentUser.username
-					eq 'company', springSecurityService.currentUser.company
-				}
-
+		if(params.query == null){
+			respond User.list(params), model:[userInstanceCount: User.count()]
+			}	
+				or {
+				eq("username", "${params.query}")
 			}
 		}
 
