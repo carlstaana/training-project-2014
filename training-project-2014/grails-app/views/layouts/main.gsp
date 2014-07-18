@@ -113,7 +113,14 @@
 								</li>
 							</sec:ifAllGranted>
 							<sec:ifAllGranted roles="ROLE_ADMIN">
-								<li>Non-Member (GLN)</li>
+								<li><span>Non-Member (GLN)</span>
+								<ul>
+									<li><g:link action="create" controller="NONMEMBER">Add Non-Member</g:link></li>
+									<li><g:link action="index" controller="NONMEMBER">Edit Non-Member</g:link></li>
+								</ul>
+								</li>
+							</sec:ifAllGranted>
+							<sec:ifAllGranted roles="ROLE_ADMIN">
 								<li><span>EAN8</span>
 								<ul>
 									<li><g:link action="create" controller="EAN8">Add EAN8</g:link></li>

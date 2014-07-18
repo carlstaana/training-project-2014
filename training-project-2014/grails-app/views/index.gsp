@@ -58,7 +58,7 @@
 										<li><g:link action="index" controller="natureOfBusiness">Nature of Business</g:link></li>
 										<li><g:link action="index" controller="productType">Product Type</g:link></li>
 										<li><g:link action="index" controller="UPCMember">UPC Members</g:link></li>
-										<li>Non-Member (GLN)</li>
+										<li><g:link action="index" controller="NONMEMBER">Non-Member (GLN)</g:link></li>
 										<li><g:link action="index" controller="EAN8">EAN8</g:link></li>
 									</sec:ifAllGranted>
 								</ul>
