@@ -390,6 +390,9 @@
 				
 				<g:link class="cancel" action="index"><g:message code="default.button.cancel.label" default="Cancel" /></g:link>
 			</fieldset>
+			
+			<sec:ifAllGranted roles="ROLE_ADMIN">
+			
 			<fieldset class="buttons">				
 				<g:link controller="CompanyRemarks" action="create" class="edit"
 					params="['company.id': companyInstance?.id]">
@@ -409,6 +412,9 @@
 					</g:link>
 				</g:else>
 			</fieldset>
+			
+			</sec:ifAllGranted>
+			
 		</g:form>
 
 	</div>
