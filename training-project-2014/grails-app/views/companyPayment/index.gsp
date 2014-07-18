@@ -23,6 +23,8 @@
 			<thead>
 					<tr>
 					
+						<g:sortableColumn property="id" title="${message(code: 'companyPayment.id.label', default: 'ID')}" />
+					
 						<g:sortableColumn property="membershipFee" title="${message(code: 'companyPayment.membershipFee.label', default: 'Membership Fee')}" />
 					
 						<g:sortableColumn property="seminarFee" title="${message(code: 'companyPayment.seminarFee.label', default: 'Seminar Fee')}" />
@@ -41,7 +43,9 @@
 				<g:each in="${companyPaymentInstanceList}" status="i" var="companyPaymentInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${companyPaymentInstance.id}" params="['company.id':params.company.id]">${fieldValue(bean: companyPaymentInstance, field: "membershipFee")}</g:link></td>
+						<td><g:link action="show" id="${companyPaymentInstance.id}" params="['company.id':params.company.id]">${fieldValue(bean: companyPaymentInstance, field: "id")}</g:link></td>
+						
+						<td>${fieldValue(bean: companyPaymentInstance, field: "membershipFee")}</td>
 					
 						<td>${fieldValue(bean: companyPaymentInstance, field: "seminarFee")}</td>
 					
@@ -51,7 +55,7 @@
 					
 						<td><g:formatDate date="${companyPaymentInstance.orDate}" /></td>
 					
-						<td>${fieldValue(bean: companyPaymentInstance, field: "remarks")}</td>
+						<td>${fieldValue(bean: companyPaymentInstance, field: "remarks")}</td>									
 					
 					</tr>
 				</g:each>
