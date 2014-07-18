@@ -13,7 +13,8 @@
 		<div id="list-download" class="content scaffold-list" role="main">
 					<fieldset class="buttons topbutton">
 				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.back.to.main.label"/></a>
-				<g:link class="create" action="create"><g:message code="default.create.new.label" args="[entityName]" /></g:link>
+				
+				<g:link class="create" action="create">Upload New File</g:link>
 			</fieldset>
 		<fieldset class="search">
 		    <g:form action="index" method="GET">
