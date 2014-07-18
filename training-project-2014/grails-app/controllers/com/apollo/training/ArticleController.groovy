@@ -159,7 +159,6 @@ class ArticleController {
 	/**
 	 * controller the report generated
 	 */
-	@Secured(['ROLE_ADMIN'])
 	def downloadStatementOfAccount(){
 		def articleInstance = Article.get(params.id)
 		def params = [:]
