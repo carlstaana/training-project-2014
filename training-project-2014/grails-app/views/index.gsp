@@ -53,12 +53,14 @@
 								<ul>
 									<li><g:link action="index" controller="company">Company Info</g:link></li>
 									<li><g:link action="index" controller="product">Product Info</g:link></li>
-									<li><g:link action="index" controller="productCategory">Product Category</g:link></li>
-									<li><g:link action="index" controller="natureOfBusiness">Nature of Business</g:link></li>
-									<li><g:link action="index" controller="productType">Product Type</g:link></li>
-									<li><g:link action="index" controller="UPCMember">UPC Members</g:link></li>
-									<li>Non-Member (GLN)</li>
-									<li><g:link action="index" controller="EAN8">EAN8</g:link></li>
+									<sec:ifAllGranted roles="ROLE_ADMIN">
+										<li><g:link action="index" controller="productCategory">Product Category</g:link></li>
+										<li><g:link action="index" controller="natureOfBusiness">Nature of Business</g:link></li>
+										<li><g:link action="index" controller="productType">Product Type</g:link></li>
+										<li><g:link action="index" controller="UPCMember">UPC Members</g:link></li>
+										<li>Non-Member (GLN)</li>
+										<li><g:link action="index" controller="EAN8">EAN8</g:link></li>
+									</sec:ifAllGranted>
 								</ul>
 							</li>
 						</ul>
@@ -66,7 +68,9 @@
 							<li class="homeviewli"><h1>User Management</h1>
 								<ul>
 									<li><g:link action="index" controller="user">Manage Users</g:link></li>
-									<li><g:link action="index" controller="GS1User">Manage GS1Users</g:link></li>
+									<sec:ifAllGranted roles="ROLE_ADMIN">
+										<li><g:link action="index" controller="GS1User">Manage GS1Users</g:link></li>
+									</sec:ifAllGranted>
 								</ul>
 						</ul>
 						<ul class="homeviewul">
@@ -83,14 +87,18 @@
 						<ul class="homeviewul">
 							<li class="homeviewli"><h1>Articles</h1>
 								<ul>
-									<li><g:link action="create" controller="article">Add New Article</g:link></li>
+									<sec:ifAllGranted roles="ROLE_ADMIN">
+										<li><g:link action="create" controller="article">Add New Article</g:link></li>
+									</sec:ifAllGranted>
 									<li><g:link action="index" controller="article">Edit Article Info</g:link></li>
 								</ul>
 						</ul>
 						<ul class="homeviewul">
 							<li class="homeviewli"><h1>Downloads</h1>
 								<ul>
-									<li><g:link action="create" controller="download">Upload File</g:link></li>
+									<sec:ifAllGranted roles="ROLE_ADMIN">
+										<li><g:link action="create" controller="download">Upload File</g:link></li>
+									</sec:ifAllGranted>
 									<li><g:link action="index" controller="download">View Files</g:link></li>
 								</ul>
 						</ul>

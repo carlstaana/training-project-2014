@@ -65,9 +65,13 @@
 						<ul>
 							<li><span>Company</span>
 							<ul>
-								<li><g:link action="create" controller="company">Add Company</g:link></li>
+								<sec:ifAllGranted roles="ROLE_ADMIN">
+									<li><g:link action="create" controller="company">Add Company</g:link></li>
+								</sec:ifAllGranted>
 								<li><g:link action="index" controller="company">Edit Company Info</g:link></li>
-								<li><g:link action="create" controller="batchPayment">Apply Batch Payment</g:link></li>
+								<sec:ifAllGranted roles="ROLE_ADMIN">
+									<li><g:link action="create" controller="batchPayment">Apply Batch Payment</g:link></li>
+								</sec:ifAllGranted>
 							</ul>
 							</li>
 							<li><span>Product</span>
@@ -76,56 +80,72 @@
 								<li><g:link action="index" controller="product">Edit Product Info</g:link></li>
 							</ul>
 							</li>
-							<li><span>Product Category</span>
-							<ul>							
-								<li><g:link action="create" controller="productCategory">Add Product Category</g:link></li>
-								<li><g:link action="index" controller="productCategory">Edit Product Category</g:link></li>
-							</ul>
-							</li>
-							<li><span>Nature of Business</span>
-							<ul>							
-								<li><g:link action="create" controller="natureOfBusiness">Add Nature of Business</g:link></li>
-								<li><g:link action="index" controller="natureOfBusiness">Edit Nature of Business</g:link></li>
-							</ul>
-							</li>
-							<li><span>Product Type</span>
-							<ul>
-								<li><g:link action="create" controller="productType">Add Product Type</g:link></li>
-								<li><g:link action="index" controller="productType">Edit Product Type</g:link></li>
-							</ul>
-							</li>
-							<li><span>UPC Member</span>
-							<ul>
-								<li><g:link action="create" controller="UPCMember">Add UPC Member</g:link></li>
-								<li><g:link action="index" controller="UPCMember">Edit UPC Member</g:link></li>
-							</ul>
-							</li>
+							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<li><span>Product Category</span>
+								<ul>						
+									<li><g:link action="create" controller="productCategory">Add Product Category</g:link></li>
+									<li><g:link action="index" controller="productCategory">Edit Product Category</g:link></li>
+								</ul>
+								</li>
+							</sec:ifAllGranted>
+							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<li><span>Nature of Business</span>
+								<ul>
+									<li><g:link action="create" controller="natureOfBusiness">Add Nature of Business</g:link></li>
+									<li><g:link action="index" controller="natureOfBusiness">Edit Nature of Business</g:link></li>
+								</ul>
+								</li>
+							</sec:ifAllGranted>
+							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<li><span>Product Type</span>
+								<ul>
+									<li><g:link action="create" controller="productType">Add Product Type</g:link></li>
+									<li><g:link action="index" controller="productType">Edit Product Type</g:link></li>
+								</ul>
+								</li>
+							</sec:ifAllGranted>
+							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<li><span>UPC Member</span>
+								<ul>
+									<li><g:link action="create" controller="UPCMember">Add UPC Member</g:link></li>
+									<li><g:link action="index" controller="UPCMember">Edit UPC Member</g:link></li>
+								</ul>
+								</li>
+							</sec:ifAllGranted>
 							<li>Non-Member (GLN)</li>
-							<li><span>EAN8</span>
-							<ul>
-								<li><g:link action="create" controller="EAN8">Add EAN8</g:link></li>
-								<li><g:link action="index" controller="EAN8">Edit EAN8</g:link></li>
-							</ul>
-							</li>
+							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<li><span>EAN8</span>
+								<ul>
+									<li><g:link action="create" controller="EAN8">Add EAN8</g:link></li>
+									<li><g:link action="index" controller="EAN8">Edit EAN8</g:link></li>
+								</ul>
+								</li>
+							</sec:ifAllGranted>
 						</ul>
 					</li>
 					<li><span>User Management</span>
 						<ul>
 							<li><g:link action="create" controller="user">Add User</g:link></li>
 							<li><g:link action="index" controller="user">Edit User</g:link></li>
-							<li><g:link action="create" controller="GS1User">Add GS1User</g:link></li>
-							<li><g:link action="index" controller="GS1User">Edit GS1User</g:link></li>
+							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<li><g:link action="create" controller="GS1User">Add GS1User</g:link></li>
+								<li><g:link action="index" controller="GS1User">Edit GS1User</g:link></li>
+							</sec:ifAllGranted>
 						</ul>
 					</li>
 					<li><span>Articles</span>
 						<ul>
-							<li><g:link action="create" controller="article">Add New Article</g:link></li>
+							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<li><g:link action="create" controller="article">Add New Article</g:link></li>
+							</sec:ifAllGranted>
 							<li><g:link action="index" controller="article">Edit Article Info</g:link></li>
 						</ul>
 					</li>
 					<li><span>Downloads</span>
 						<ul>
-							<li><g:link action="create" controller="download">Upload File</g:link></li>
+							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<li><g:link action="create" controller="download">Upload File</g:link></li>
+							</sec:ifAllGranted>
 							<li><g:link action="index" controller="download">View Files</g:link></li>
 						</ul>
 					</li>
