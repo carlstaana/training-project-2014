@@ -34,6 +34,8 @@ class DownloadController {
 		respond new Download(params)
 	}
 	
+	def springSecurityService
+	
 	@Transactional
 	def save(Download downloadInstance) {
 		if (downloadInstance == null) {
@@ -53,55 +55,28 @@ class DownloadController {
 		if(downloadInstance.fileType.equals("text/csv")){
 			String s = new String(downloadInstance.file)
 			String[] rows = s.split("\n")
+			boolean valid = true
+			def role = springSecurityService.getPrincipal().getAuthorities()
+			def userCompany = springSecurityService.currentUser.company
 			for(int i = 1; i < rows.length ; i++){
 				def column = rows[i].split(",")
 				Product.withTransaction{
-					def product = new Product()
-					product.company = column[0].trim()
-					product.subCompany = column[1].trim()
-					product.GLN = Integer.valueOf(column[2].trim())
-					product.prefix = Integer.valueOf(column[3].trim())
-					product.GTIN = Integer.valueOf(column[4].trim())
-					product.brand = column[5].trim()
-					product.BFADRegistrationNumber = column[6].trim()
-					product.shortName = column[7].trim()
-					product.description = column[8].trim()
-					product.netContent = Float.valueOf(column[9].trim())
-					product.packageType = column[10].trim()
-					product.stackingHeight = Integer.valueOf(column[11].trim())
-					product.unitOfMeasureStackingHeight = column[12].trim()
-					product.noOfLayersPerPallet = Float.valueOf(column[13].trim())
-					product.netWeight = Integer.valueOf(column[14].trim())
-					product.unitOfMeasureNetWeight = column[15].trim()
-					product.tradeItemLength = Integer.valueOf(column[16].trim())
-					product.unitOfMeasureLength = column[17].trim()
-					product.tradeItemWidth = Integer.valueOf(column[18].trim())
-					product.unitOfMeasureWidth = column[19].trim()
-					product.tradeItemHeight = Integer.valueOf(column[20].trim())
-					product.unitOfMeasureHeight = column[21].trim()
-					product.handling = column[22].trim()
-					product.storage = column[23].trim()
-					product.startDate = new Date().parse("yyyy-MM-dd hh:mm:ss",column[24].trim())
-					product.endDate = new Date().parse("yyyy-MM-dd hh:mm:ss",column[25].trim())
-					product.minimumOrderQuantity = Integer.valueOf(column[26].trim())
-					product.unitOfMeasureOrderUnit = column[27].trim()
-					for(View value: View.values()){
-						if(value.toString().equals(column[28].trim())){
-							product.view = value
-						}
-					}
-					product.productCategory = ProductCategory.findByName(column[29].trim())
-					product.status = "added"
-					
-					product.save flush:true
+					try{
+						def product = new Product(column,role,userCompany)
+						product.save flush:true
+					}catch(Exception e){
+						flash.error=e.getMessage()
+						valid=false
+						return
+					}					
 				}
-				if(hasSomethingGoneWrong()){
-					status.setRollbackOnly()
-					flash.error="An error has occurred reading the csv file. Cannot save the batch of products."
-					redirect action:'create'
-				}	
 			}
-			redirect (controller:'Product', action:'index')
+			if(!valid){
+				redirect action:'create'
+			}else{
+				flash.message="a group of products has been uploaded."
+				redirect controller:'product',action:'index'
+			}
 			return
 		}else if(downloadInstance.fileType.equals("text/plain")){
 		
