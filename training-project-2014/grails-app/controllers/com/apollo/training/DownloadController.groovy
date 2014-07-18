@@ -3,8 +3,9 @@ package com.apollo.training
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import org.springframework.web.multipart.MultipartFile
+import grails.plugin.springsecurity.annotation.Secured
 
-
+@Secured(['IS_AUTHENTICATED_FULLY'])
 @Transactional(readOnly = true)
 class DownloadController {
 
