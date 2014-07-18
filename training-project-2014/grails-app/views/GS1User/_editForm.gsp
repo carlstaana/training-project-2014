@@ -113,7 +113,7 @@
 
 </div>
 
-<div>
+<%-- <div>
 	<label>Role: </label>
 	<sec:ifAllGranted roles="ROLE_ADMIN">
 		<g:select name="role"
@@ -169,4 +169,6 @@
 		value="${userInstance?.passwordExpired}" />
 
 </div>
+
+--%>
 

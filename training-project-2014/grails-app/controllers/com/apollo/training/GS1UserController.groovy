@@ -147,12 +147,18 @@ class GS1UserController {
 				changeUser.password = newPassword
 				changeUser.retypePassword = newPassword
 				changeUser.save flush: true
-				render "Password has been changed!"
+				flash.message = "Password Changed!"
+				redirect action:"changePassword"
 			} else {
-				render "Error! Unequal new password"
+			flash.error = "Password is not equal!"
+				redirect action:"changePassword"
 			}
-		} else if(oldPassword != null || newPassword!= null || retype != null) {
-			render "Error! All fields required."
 		}
+		
+	/*	else if(oldPassword != null || newPassword!= null || retype != null) {
+		flash.error = "Field Retype Password is null!"
+			redirect action:"changePassword"
+		}
+	*/
 	}
 }
