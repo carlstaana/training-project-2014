@@ -10,36 +10,78 @@ import grails.plugin.springsecurity.annotation.Secured
 class ProductController {
 
 	def springSecurityService
-	
+
 	static allowedMethods = [save: "POST", update: "PUT", delete: ["POST", "DELETE"]]
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 
+		def role = springSecurityService.getPrincipal().getAuthorities()
+
 		if(!params.searchable){
 			if(params.searchCategory.equals("ALL") || params.searchCategory == null){
-				[ searchCategory:params.searchCategory,
-					searchKeyword:params.searchable,
-					productInstanceList: Product.list(params),
-					productInstanceTotal: Product.count()]
+				if(role.toString().equals("[ROLE_USER]")){
+					def products = Product.findAllByViewNotEqual(View.RESTRICTED)
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						productInstanceList: products,
+						productInstanceTotal: Product.count()]
+				} else{
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						productInstanceList: Product.list(params),
+						productInstanceTotal: Product.count()]
+				}
 			}
 			else{
-				def products = Product.findWhere(status:params.searchCategory)
-				[ searchCategory:params.searchCategory,
-					searchKeyword:params.searchable,
-					productInstanceList: products,
-					productInstanceTotal: Product.count()]
+				if(role.toString().equals("[ROLE_USER]")){
+					def products = Product.findAllByStatusAndViewNotEqual(params.searchCategory, View.RESTRICTED)
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						productInstanceList: products,
+						productInstanceTotal: Product.count()]
+				} else{
+					def products = Product.findWhere(status:params.searchCategory)
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						productInstanceList: products,
+						productInstanceTotal: Product.count()]
+				}
 			}
 		}else{
-
-			def products =  Product.findAllByCompanyLikeAndStatusLike("%${params.searchable}%", "%${params.searchCategory}%", params)
-			[   searchCategory:params.searchCategory,
-				searchKeyword: params.searchable,
-				productInstanceList: products ,
-				productInstanceTotal: Product.count()]
+			if(role.toString().equals("[ROLE_USER]")){
+				if(params.searchCategory.equals("ALL") || params.searchCategory == null){
+					def products =  Product.findAllByBrandLikeAndViewLike("%${params.searchable}%", View.MEMBER, params)
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						productInstanceList: products,
+						productInstanceTotal: Product.count()]
+				}
+				else{
+					def products =  Product.findAllByBrandLikeAndStatusLikeAndViewLike("%${params.searchable}%", "%${params.searchCategory}%", View.MEMBER, params)
+					[ searchCategory:params.searchCategory,
+						searchKeyword:params.searchable,
+						productInstanceList: products,
+						productInstanceTotal: Product.count()]
+				}
+			} else{
+				if(params.searchCategory.equals("ALL") || params.searchCategory == null){
+					def products =  Product.findAllByBrandLike("%${params.searchable}%", params)
+					[   searchCategory:params.searchCategory,
+						searchKeyword: params.searchable,
+						productInstanceList: products ,
+						productInstanceTotal: Product.count()]
+				} else{
+					def products =  Product.findAllByBrandLikeAndStatusLike("%${params.searchable}%", "%${params.searchCategory}%", params)
+					[   searchCategory:params.searchCategory,
+						searchKeyword: params.searchable,
+						productInstanceList: products ,
+						productInstanceTotal: Product.count()]
+				}
+			}
 		}
 	}
-	
+
 	@Secured(['ROLE_ADMIN'])
 	@Transactional
 	def reactivate(Product productInstance){
@@ -155,7 +197,7 @@ class ProductController {
 			'*'{ respond productInstance, [status: OK] }
 		}
 	}
-	
+
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def show(Product productInstance) {
 		respond productInstance
@@ -181,7 +223,7 @@ class ProductController {
 			respond productInstance.errors, view:'create'
 			return
 		}
-		
+
 		productInstance.company = Company.findByCompanyName(user)
 		println productInstance.company
 
