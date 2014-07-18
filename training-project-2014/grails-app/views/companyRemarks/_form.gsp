@@ -11,12 +11,5 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: companyRemarksInstance, field: 'company', 'error')} required">
-	<label for="company">
-		<g:message code="companyRemarks.company.label" default="Company" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="company" name="company.id" from="${com.apollo.training.Company.list()}" optionKey="id" required="" value="${companyRemarksInstance?.company?.id}" class="many-to-one" />
-
-</div>
+<g:hiddenField id="company" name="company.id" value="${params.company.id}"/>
 
