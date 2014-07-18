@@ -308,11 +308,16 @@
 						onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				
 					<g:if test="${productInstance?.status != 'CANCELLED'}">
-						<g:actionSubmit action="cancel" class="cancel"
-							value="${message(code: 'default.button.cancel.label', default: 'Cancel Product')}" />
-						<g:if test="${productInstance?.status == 'ADDED' || productInstance?.status == 'EDITED'}">
+						<g:if test="${productInstance?.status == 'APPROVED' }">
+						<g:actionSubmit action="cancel" class="cancelstatus"
+							value="${message(code: 'Cancel Product')}" />
+						</g:if>
+						
+						<g:if test="${productInstance?.status == 'ADDED' || productInstance?.status == 'EDITED' || productInstance?.status == 'REJECTED'}">
+							<g:if test="${productInstance?.status != 'REJECTED' }">
 							<g:actionSubmit action="reject" class="reject"
 								value="${message(code: 'default.button.reject.label', default: 'Reject')}" />
+							</g:if>
 							<g:actionSubmit action="approve" class="approve"
 								value="${message(code: 'default.button.approve.label', default: 'Approve')}" />
 						</g:if>
