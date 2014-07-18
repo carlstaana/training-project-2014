@@ -1,5 +1,6 @@
 package com.apollo.training
 
+import java.text.SimpleDateFormat
 import org.springframework.aop.aspectj.RuntimeTestWalker.ThisInstanceOfResidueTestVisitor;
 
 class Product{
@@ -216,9 +217,10 @@ class Product{
 		this.handling = column[22].trim()
 		this.storage = column[23].trim()
 		
+		def formatter = new SimpleDateFormat("yyyy-MM-dd")
 		
-		this.startDate = new Date().parse("yyyy-MM-dd",column[24].trim())
-		this.endDate = new Date().parse("yyyy-MM-dd",column[25].trim())
+		this.startDate = formatter.parse(column[24].trim())
+		this.endDate = formatter.parse(column[25].trim())
 		
 		
 		
