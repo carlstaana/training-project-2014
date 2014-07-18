@@ -104,14 +104,12 @@
 								</ul>
 								</li>
 							</sec:ifAllGranted>
-							<sec:ifAllGranted roles="ROLE_ADMIN">
-								<li><span>UPC Member</span>
-								<ul>
-									<li><g:link action="create" controller="UPCMember">Add UPC Member</g:link></li>
-									<li><g:link action="index" controller="UPCMember">Edit UPC Member</g:link></li>
-								</ul>
-								</li>
-							</sec:ifAllGranted>
+							<li><span>UPC Member</span>
+							<ul>
+								<li><g:link action="create" controller="UPCMember">Add UPC Member</g:link></li>
+								<li><g:link action="index" controller="UPCMember">Edit UPC Member</g:link></li>
+							</ul>
+							</li>
 							<sec:ifAllGranted roles="ROLE_ADMIN">
 								<li><span>Non-Member (GLN)</span>
 								<ul>
