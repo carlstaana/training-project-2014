@@ -19,7 +19,10 @@ class EAN8Controller {
 		params.max = Math.min(params.max ? params.int('max') : 5, 100)
 
 		def EAN8List = EAN8.createCriteria().list (params) {
-			or {
+		if(params.query == null){
+			respond EAN8.list(params), model:[EAN8InstanceCount: EAN8.count()]
+			}	
+				or {
 				ilike("company", "%${params.query}%")
 			}
 		}
