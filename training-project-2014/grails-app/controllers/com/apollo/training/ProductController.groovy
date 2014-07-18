@@ -6,12 +6,13 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['IS_AUTHENTICATED_FULLY'])
 @Transactional(readOnly = true)
 class ProductController {
 
+	def springSecurityService
+	
 	static allowedMethods = [save: "POST", update: "PUT", delete: ["POST", "DELETE"]]
-
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 
@@ -154,15 +155,20 @@ class ProductController {
 			'*'{ respond productInstance, [status: OK] }
 		}
 	}
-
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def show(Product productInstance) {
 		respond productInstance
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
+		def user = springSecurityService.currentUser.company
+		[user: user]
 		respond new Product(params)
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	@Transactional
 	def save(Product productInstance) {
 		if (productInstance == null) {
@@ -191,10 +197,12 @@ class ProductController {
 		}
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def edit(Product productInstance) {
 		respond productInstance
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	@Transactional
 	def update(Product productInstance) {
 		if (productInstance == null) {
@@ -221,6 +229,7 @@ class ProductController {
 		}
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	@Transactional
 	def delete(Product productInstance) {
 
@@ -251,6 +260,7 @@ class ProductController {
 		}
 	}
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	protected void notFound() {
 		request.withFormat {
 			form multipartForm {

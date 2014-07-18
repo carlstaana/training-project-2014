@@ -5,8 +5,12 @@
 		<g:message code="product.company.label" default="Company" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="company" name="company.id" from="${com.apollo.training.Company.list()}" optionKey="id" required="" value="${productInstance?.company?.id}" class="one-to-many" />
-
+	<sec:ifAllGranted roles="ROLE_ADMIN">
+		<g:select id="company" name="company.id" from="${com.apollo.training.Company.list()}" optionKey="id" required="" value="${productInstance?.company?.id}" class="one-to-many" />
+	</sec:ifAllGranted>
+	<sec:ifAllGranted roles="ROLE_USER">
+		<g:textField id="company" name="company.id" readonly="readonly" required="" value="${applicationContext.springSecurityService.currentUser.company}" />
+	</sec:ifAllGranted>
 </div>
 
 <div
