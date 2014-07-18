@@ -8,22 +8,22 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-download" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				<li>
-    <g:form action="index" method="GET">
+		<div id="module">
+		<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+		<div id="list-download" class="content scaffold-list" role="main">
+					<fieldset class="buttons topbutton">
+				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.back.to.main.label"/></a>
+				<g:link class="create" action="create"><g:message code="default.create.new.label" args="[entityName]" /></g:link>
+			</fieldset>
+		<fieldset class="search">
+		    <g:form action="index" method="GET">
         
             <label for="query">Search file:</label>
             <g:textField name="query" value="${params.query}"/>
         
     </g:form>
-				</li>
-			</ul>
-		</div>
-		<div id="list-download" class="content scaffold-list" role="main">
+    </fieldset>
+    <div id="clear"></div>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -65,6 +65,7 @@
 			<div class="pagination">
 				<g:paginate total="${downloadInstanceCount ?: 0}" params="${params }"/>
 			</div>
+		</div>
 		</div>
 	</body>
 </html>
