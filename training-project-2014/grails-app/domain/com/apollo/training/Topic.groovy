@@ -25,4 +25,8 @@ class Topic {
 		return "${title}"
 	}
 	
+	static mapping={
+		posts cascade: "all-delete-orphan"
+	}
+	
 }
