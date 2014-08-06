@@ -286,14 +286,6 @@ class ProductController {
 			return
 		}
 
-		for(def companyList : Company.list()){
-			if(companyList.products.toString().equalsIgnoreCase(productInstance.brand.toString())){
-				flash.message = message(code: 'Cannot be deleted!')
-				respond productInstance.errors, view:'show'
-				return
-			}
-		}
-
 		productInstance.delete flush:true
 
 		request.withFormat {
