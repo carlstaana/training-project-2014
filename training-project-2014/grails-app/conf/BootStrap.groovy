@@ -43,7 +43,7 @@ class BootStrap {
 			username: 'pamelallorence',
 			password: 'ap0ll0',
 			retypePassword: 'ap0ll0',
-			lastName: 'Dimapilis',
+			lastName: 'Demafeliz',
 			firstName: 'Pamela',
 			company: 'Apollo',
 			position: 'Dev',
